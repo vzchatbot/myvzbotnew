@@ -32,7 +32,7 @@ router.post('/webhook', function (req, res) {
 
 function recommendTVNew(callback) {
 
-    var req = client.post("https://www98.verizon.com/ondemand/vzwhatshot.ashx", args, function (data, response) {
+    var req = client.post("https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot", args, function (data, response) {
 
         console.log("recommendTVNew");
         callback(data);
