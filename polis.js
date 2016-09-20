@@ -1,7 +1,7 @@
 var express = require('express');
 var request = require('request');
 var bodyParser = require('body-parser');
-
+var StringDecoder = require('string_decoder').StringDecoder;
 
 
 var app = express();
@@ -43,11 +43,17 @@ function recommendTVNew(callback) {
 
     var req = client.post("https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot", args, function (data, response) {
 
-        
+        var decoder = new StringDecoder('utf8');
       
         console.log("api resp:" + data);
  
-        callback(data);
+    
+
+        response.on('data', function (chunk) {
+            var textChunk = decoder.write(chunk);
+            callback(textChunk);
+            // process utf8 text chunk
+        });
 
     });
 }function recommendTVNew1(apiresp) {
