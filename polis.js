@@ -41,7 +41,7 @@ router.get('/webhook', function (req, res) {
 });
 function recommendTVNew(callback) {
 
-    var req = client.post("https://www98.verizon.com/Ondemand/vzWhatsHot.ashx", args, function (data, response) {
+    var req = client.post("https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot", args, function (data, response) {
 
         
       
