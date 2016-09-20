@@ -39,6 +39,14 @@ router.get('/webhook', function (req, res) {
 
 
 });
+function deserialize(text) {
+    return JSON.parse(text, function (key, value) {
+        return ((value instanceof Object) && (value.type == 'Buffer'))
+            ? new Buffer(value.string, value.encoding)
+            : value;
+    });
+}
+
 function recommendTVNew(callback) {
 
     var req = client.post("https://www98.verizon.com/Ondemand/vzWhatsHot.ashx", args, function (data, response) {
@@ -58,8 +66,10 @@ function recommendTVNew(callback) {
     //var output = eval('(' + JSON.stringify(apiresp) + ')');
     //console.log("apiresp1:" + JSON.stringify(objToJson));
     //console.log("output1:" + output);
-   // var parsedResponse = JSON.parse(apiresp);
+  
 
+    var parsedResponse = deserialize(apiresp);
+   
 
     //console.log(aa);
     //return objToJson;
