@@ -28,9 +28,20 @@ router.get('/webhook', function (req, res) {
 });
 
 
+app.all('/', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
+router.all('/', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 
 router.get('/vzwhatshot1', function (req, res) {
-
+    
     var options = {
         host: 'www98.verizon.com',
         port: 443,
@@ -38,6 +49,7 @@ router.get('/vzwhatshot1', function (req, res) {
     };
 
     http.get(options, function (resp) {
+       
         resp.setEncoding('utf8');
         resp.on('data', function (chunk) {
            
