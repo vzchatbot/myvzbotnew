@@ -32,12 +32,14 @@ router.post('/webhook', function (req, res) {
 
 function recommendTVNew(callback) {
 
-    var req = client.post("https://www98.verizon.com/ondemand/vzwhatshot.ashx", args, function (data, response) {
-
-        console.log("recommendTVNew");
-        callback(data);
-
+    request('https://www98.verizon.com/Ondemand/vzWhatsHot.ashx', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            console.log("recommendTVNew");
+            callback(body);
+        }
     });
+
+   
 }
 function recommendTVNew1(apiresp) {
     var objToJson = {};
@@ -46,7 +48,7 @@ function recommendTVNew1(apiresp) {
     //var output = eval('(' + JSON.stringify(apiresp) + ')');
     console.log("apiresp1:" + JSON.stringify(objToJson));
     //console.log("output1:" + output);
-    //var parsedResponse = JSON.parse(apiresp);
+    var parsedResponse = JSON.parse(apiresp);
 
 
     //console.log(aa);
@@ -55,7 +57,7 @@ function recommendTVNew1(apiresp) {
     return ({
         speech: "Here are some recommendations for tonight",
         displayText: "TV recommendations",
-        data: objToJson,
+        data: parsedResponse,
         source: "Zero Service - app_zero.js"
     });
 
