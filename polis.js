@@ -35,6 +35,11 @@ function recommendTVNew(callback) {
     var req = client.post("https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot", args, function (data, response) {
 
         console.log("recommendTVNew");
+        if (Buffer.isBuffer(data)) {
+            data = data.toString('utf8');
+        }
+
+ 
         callback(data);
 
     });
