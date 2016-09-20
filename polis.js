@@ -42,7 +42,7 @@ router.get('/webhook', function (req, res) {
         "headers": headersInfo
     };
 
-    var req = client.post("https://vzentpoljs.herokuapp.com/api/vzwhatshot", args, function (data, response) {
+    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, response) {
 
         var parsedData = "";
         console.log("success1");
@@ -74,6 +74,6 @@ router.post('/vzwhatshot', function (req, res) {
 // all of our routes will be prefixed with /api
 
 app.use('/api', router);
-app.listen(3000, function () {
+app.listen(PORT, function () {
     console.log('Listening on port ' + PORT) ;
 });
