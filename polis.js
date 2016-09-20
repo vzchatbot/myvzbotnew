@@ -45,9 +45,9 @@ function recommendTVNew(callback) {
 
         var decoder = new StringDecoder('utf8');
       
-        console.log("api resp:" + data);
+        console.log("api resp:" + decoder);
  
-    
+        response.setEncoding('utf8');
 
         response.on('data', function (chunk) {
             var textChunk = decoder.write(chunk);
