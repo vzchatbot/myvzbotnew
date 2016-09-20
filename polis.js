@@ -17,7 +17,7 @@ app.options('*', cors());
 
 router.get('/webhook', function (req, res) {
 
-    request('/api/vzwhatshot1', function (error, response, body) {
+    request('/api/vzwhatshot2', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res.json(body);
         }
@@ -29,7 +29,7 @@ router.get('/webhook', function (req, res) {
 
 router.get('/webhook1', function (req, res) {
 
-    request('www.verizon.com/fiostv/myservices/admin/testwhatshot.ashx', function (error, response, body) {
+    request('https://myvzbot.herokuapp.com/api/vzwhatshot2', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res.json(body);
         }
