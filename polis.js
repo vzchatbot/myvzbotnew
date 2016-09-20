@@ -27,6 +27,23 @@ router.get('/webhook', function (req, res) {
 
 });
 
+router.post('/webhook', function (req, res) {
+
+    var intent = "showrecommendation";
+
+    switch (intent) {
+
+        case "showrecommendation":
+
+
+            recommendTVNew(function (str) {
+                console.log("inside showrecommendation ");
+                res.json(recommendTVNew1(str));
+            });
+
+    }
+
+});
 function recommendTVNew(callback) {
     request.get(
         'https://www.verizon.com/fiostv/myservices/admin/testwhatshot.ashx',
