@@ -17,7 +17,7 @@ app.options('*', cors());
 
 router.get('/webhook', function (req, res) {
 
-    request('/api/vzwhatshot1', function (error, response, body) {
+    request('https://myvzbot.herokuapp.com/api/vzwhatshot2', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res.json(body);
         }
