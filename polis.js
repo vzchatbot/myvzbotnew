@@ -13,7 +13,7 @@ var PORT = process.env.PORT || 9000;
 var router = express.Router();
 
 app.use(cors())
-
+app.options('*', cors());
 
 router.get('/webhook', function (req, res) {
 
@@ -27,6 +27,20 @@ router.get('/webhook', function (req, res) {
 
 });
 
+router.get('/webhook1', function (req, res) {
+
+    request('https://www.verizon.com/Ondemand/api/PPVWebAPI/GetPPVEvents?Genre=&StartDate=09%2F20%2F2016&StartTime=11%3A38+AM&PriceStart=0&PriceEnd=100000&intCurrentPage=1&sort_OrderbyColumn=StartDate+asc&SearchTitle=&_=1474389539047', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.json(body);
+        }
+    })
+
+
+
+});
+
+
+
 
 
 router.get('/vzwhatshot1', function (req, res) {
@@ -38,14 +52,12 @@ router.get('/vzwhatshot1', function (req, res) {
     };
 
     http.get(options, function (resp) {
-       
+
         resp.setEncoding('utf8');
         resp.on('data', function (chunk) {
-           
+
             res.json(chunk);
         });
-    }).on("error", function (e) {
-        console.log("Got error: " + e.message);
     });
 
 });
