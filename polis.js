@@ -11,7 +11,7 @@ app.options('*', cors());
 
 router.get('/webhook', function (req, res) {
 
-    var intent = req.body.result.metadata.intentName;
+    var intent = "showrecommendation";
 
     switch (intent) {
 
