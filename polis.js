@@ -20,7 +20,7 @@ var args = {
 
 router.post('/webhook', function (req, res) {
 
-    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, response) {
+    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, res) {
 
         var parsedData = "";
         console.log("success1");
@@ -36,7 +36,7 @@ router.get('/webhook', function (req, res) {
 
   
 
-    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, response) {
+    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, res) {
 
         var parsedData = "";
         console.log("success1");
