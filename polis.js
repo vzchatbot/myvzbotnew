@@ -9,7 +9,7 @@ var router = express.Router();
 app.use(cors())
 app.options('*', cors());
 
-router.get('/webhook', function (req, res) {
+router.post('/webhook', function (req, res) {
 
     var intent = req.body.result.metadata.intentName;
 
