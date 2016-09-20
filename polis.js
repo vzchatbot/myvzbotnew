@@ -20,30 +20,48 @@ var args = {
 
 router.post('/webhook', function (req, res) {
 
-    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, res) {
-
-        var parsedData = "";
-        console.log("success1");
-            parsedData = JSON.parse(data);
-            res.json(parsedData);
-           
+    recommendTVNew(function (str) {
+        console.log("inside showrecommendation ");
+        res.json(recommendTVNew1(str));
     });
+
+   
 
      
 });
 
-router.get('/webhook', function (req, res) {
+function recommendTVNew(callback) {
 
-  
+    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, response) {
 
-    var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, res) {
-
-        var parsedData = "";
-        console.log("success1");
-       
-        res.json(parsedData);
+        console.log("recommendTVNew");
+        callback(data);
 
     });
+}
+function recommendTVNew1(apiresp) {
+   
+
+   
+
+    //console.log(aa);
+    //return objToJson;
+
+    return ({
+        speech: "Here are some recommendations for tonight",
+        displayText: "TV recommendations",
+        
+        source: "Zero Service - app_zero.js"
+    });
+
+}
+router.get('/webhook', function (req, res) {
+
+    recommendTVNew(function (str) {
+        console.log("inside showrecommendation ");
+        res.json(recommendTVNew1(str));
+    });
+
 
 
 });
