@@ -53,6 +53,25 @@ router.get('/webhook2', function (req, res) {
 
 });
 
+router.get('/vzwhatshot2', function (req, res) {
+
+    var options = {
+        host: 'www.verizon.com',
+        port: 443,
+        path: '/fiostv/myservices/admin/testwhatshot.ashx'
+    };
+
+    http.get(options, function (resp) {
+
+        resp.setEncoding('utf8');
+        resp.on('data', function (chunk) {
+
+            res.json(chunk);
+        });
+    });
+
+});
+
 
 
 router.get('/vzwhatshot1', function (req, res) {
