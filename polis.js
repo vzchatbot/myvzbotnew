@@ -13,14 +13,12 @@ var router = express.Router();
 
 router.post('/webhook', function (req, res) {
 
-                            
+    var headersInfo = { "Content-Type": "application/json" };
     var Client = require('node-rest-client').Client;
     var client = new Client();
     var args = {
-        "headers": headersInfo,
-        "data": JSON.stringify(reqData)
-    };
-        
+        "headers": headersInfo
+    }; 
     var req = client.post("https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx", args, function (data, response) {
 
         var parsedData = "";
