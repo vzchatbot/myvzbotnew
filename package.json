@@ -1,0 +1,17 @@
+{
+  "name": "polis.js",
+  "version": "0.0.3",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "debug": "^2.2.0",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "node-rest-client": "^2.0.1",
+    "request": "^2.75.0",
+    "xml2js": "^0.4.17"
+  },
+  "engines": {
+    "node": "0.12.x",
+    "npm": "2.10.x"
+  }
+}
