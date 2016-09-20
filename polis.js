@@ -58,7 +58,7 @@ function recommendTVNew(callback) {
     //var output = eval('(' + JSON.stringify(apiresp) + ')');
     //console.log("apiresp1:" + JSON.stringify(objToJson));
     //console.log("output1:" + output);
-    var parsedResponse = JSON.parse(apiresp);
+   // var parsedResponse = JSON.parse(apiresp);
 
 
     //console.log(aa);
@@ -67,7 +67,7 @@ function recommendTVNew(callback) {
     return ({
         speech: "Here are some recommendations for tonight",
         displayText: "TV recommendations",
-        data: parsedResponse,
+        data: apiresp,
         source: "Zero Service - app_zero.js"
     });
 
