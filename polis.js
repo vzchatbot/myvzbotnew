@@ -11,11 +11,11 @@ var PORT = process.env.PORT || 9000;
 
 var router = express.Router(); 
 
-var headersInfo = { "Content-Type": "application/json" };
+var headersInfo = { "Content-Type": "text/string" };
 var Client = require('node-rest-client').Client;
 var client = new Client();
 var args = {
-    "headers": headersInfo
+  
 };
 
 router.post('/webhook', function (req, res) {
