@@ -4,7 +4,7 @@ var express = require('express');
 var request = require('request');
 
 
-
+var http = require('https');
 
 var app = express();
 
@@ -17,33 +17,34 @@ var router = express.Router();
 
 router.get('/webhook', function (req, res) {
 
-    request.post(
-        'https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot',
-        { json: { key: 'value' } },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                res.json(body);
-            }
+    request('/api/vzwhatshot1', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.json(body);
         }
-    );
+    })
+
+   
 
 });
 
 
-router.get('/vzwhatshot', function (req, res) {
 
-    var headersInfo = { "Content-Type": "application/json" };
-    var Client = require('node-rest-client').Client;
-    var client = new Client();
-    var args = {
-        "headers": headersInfo
+router.get('/vzwhatshot1', function (req, res) {
+
+    var options = {
+        host: 'www98.verizon.com',
+        port: 443,
+        path: '/Ondemand/api/utilWebAPI/GetWhatsHot'
     };
 
-    var req = client.post("https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot", args, function (data, response) {
-
-        console.log("vzwhatshot");
-        res.json(data);
-
+    http.get(options, function (resp) {
+        resp.setEncoding('utf8');
+        resp.on('data', function (chunk) {
+           
+            res.json(chunk);
+        });
+    }).on("error", function (e) {
+        console.log("Got error: " + e.message);
     });
 
 });
