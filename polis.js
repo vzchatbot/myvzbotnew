@@ -30,6 +30,24 @@ router.get('/webhook', function (req, res) {
 });
 
 
+router.get('/vzwhatshot', function (req, res) {
+
+    var headersInfo = { "Content-Type": "application/json" };
+    var Client = require('node-rest-client').Client;
+    var client = new Client();
+    var args = {
+        "headers": headersInfo
+    };
+
+    var req = client.post("https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot", args, function (data, response) {
+
+        console.log("vzwhatshot");
+        res.json(data);
+
+    });
+
+});
+
 // more routes for our API will happen here
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
