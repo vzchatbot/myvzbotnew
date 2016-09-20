@@ -2,7 +2,7 @@
 var express = require('express');
 
 var request = require('request');
-
+var cors = require('cors');
 
 var http = require('https');
 
@@ -12,7 +12,7 @@ var PORT = process.env.PORT || 9000;
 
 var router = express.Router();
 
-
+app.use(cors())
 
 
 router.get('/webhook', function (req, res) {
@@ -26,12 +26,7 @@ router.get('/webhook', function (req, res) {
    
 
 });
-app.all('*', function (req, res) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
-    
-});
+
 
 
 router.get('/vzwhatshot1', function (req, res) {
