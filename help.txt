@@ -1,0 +1,42 @@
+﻿webhook URL:
+
+Local:http://localhost:3000/api/webhook
+Heroku:https://myvzbot.herokuapp.com/api/vzwhatshot
+
+WebHook Request Header:
+
+Content-type: application/json
+
+WebHook Request Body:
+
+{
+    "id": "cfcbd337-6b66-4393-a6a3-74fc5487cedb",
+    "timestamp": "2016-02-16T00:30:13.529Z",
+    "result": {
+        "source": "agent",
+        "resolvedQuery": "What day is to day",
+        "action": "showrecommendation",
+        "actionIncomplete": false,
+        "parameters": {
+            "day": ""
+        },
+        "contexts": [],
+        "metadata": {
+            "intentId": "b6ede786-1d6a-44b2-86ec-9f4381308ed1",
+            "intentName": "sampleindent"
+        },
+        "fulfillment": {
+            "speech": ""
+        }
+    }
+}
+
+URL:
+https://www98.verizon.com/foryourhome/vzrepair/flowengine/vzwhatshot.ashx
+https://www98.verizon.com/ondemand/vzwhatshot.ashx
+https://www98.verizon.com/Ondemand/api/utilWebAPI/GetWhatsHot
+
+
+GitHub:
+
+https://github.com/sureshdevaraj/myvzbotnew

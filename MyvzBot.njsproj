@@ -12,8 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>545e6bd3-6ef9-4c0b-bd74-cbce59ad4683</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>polis.js</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -35,6 +34,7 @@
     <Compile Include="polis - Copy.js" />
     <Compile Include="polis.js" />
     <Content Include="app.json" />
+    <Content Include="help.txt" />
     <Content Include="package.json" />
     <Content Include="Procfile" />
     <Content Include="README.md" />
