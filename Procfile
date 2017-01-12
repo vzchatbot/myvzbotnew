@@ -1,2 +1,2 @@
-web: node webchat.js
+web: node app.js
 
