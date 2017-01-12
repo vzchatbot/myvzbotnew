@@ -1,2 +1,2 @@
-web: node polis.js
+web: node webchat.js
 
