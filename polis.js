@@ -1,89 +1,28 @@
+var restify = require('restify');
+var builder = require('botbuilder');
 
-var express = require('express');
-var request = require('request');
-var bodyParser = require('body-parser');
+//=========================================================
+// Bot Setup
+//=========================================================
 
-var app = express();
-var PORT = process.env.PORT || 9000;
-var router = express.Router();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); 
-
-router.get('/webhook', function (req, res) {
-    var intent = "showrecommendation";
-    switch (intent) {
-        case "showrecommendation":
-            recommendTVNew(function (str) {
-                console.log("inside showrecommendation ");
-                res.json(recommendTVNew1(str));
-            });
-    }   
+// Setup Restify Server
+var server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, function () {
+    console.log('%s listening to %s', server.name, server.url);
 });
 
-router.post('/webhook', function (req, res) {
-	var intent = req.body.result.action;
-    switch (intent) {
-        case "showrecommendation":
-            recommendTVNew(function (str) {
-                console.log("inside showrecommendation ");
-                res.json(recommendTVNew1(str));
-            });
-    }
+// Create chat bot
+var connector = new builder.ChatConnector({
+    appId: '31c8d108-cdc4-4474-8e08-c2f6a3b54364',
+    appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
+var bot = new builder.UniversalBot(connector);
+server.post('/api/messages', connector.listen());
 
+//=========================================================
+// Bots Dialogs
+//=========================================================
 
-function recommendTVNew(callback) {
-	var headersInfo = { "Content-Type": "application/json" };
-	
-	var args = {
-		"headers": headersInfo,
-		"json": {
-			Flow: 'TroubleShooting Flows\\Test\\APIChatBot.xml',
-			Request: {
-				ThisValue: 'Trending'
-			}
-		}
-	};
-
-    request.post(
-        'https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx', args,
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                callback(body);
-            }
-        }
-    );
-}
-
-function recommendTVNew1(apiresp) {
-    var objToJson = {};
-    objToJson = apiresp;
-    
-   // console.log("apiresp1:" + JSON.stringify(objToJson));
-    //console.log("output1:" + output);
-    //var parsedResponse = JSON.parse(apiresp);
-
-	var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;	
-
-	console.log("subflow :" + subflow)
-    
-    return ({
-        speech: "Here are some recommendations for tonight",
-        displayText: "TV recommendations",
-        data: subflow,
-        source: "Zero Service - app_zero.js"
-    });
-
-}
-
-
-// more routes for our API will happen here
-// REGISTER OUR ROUTES -------------------------------
-// all of our routes will be prefixed with /api
-
-app.use('/api', router);
-app.listen(3000, function () {
-    console.log('Listening on port ' + PORT);
+bot.dialog('/', function (session) {
+    session.send("Hello World");
 });
-
