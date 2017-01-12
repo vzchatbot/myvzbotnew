@@ -1,5 +1,5 @@
 {
-  "name": "polis.js",
+  "name": "webchat",
   "version": "0.0.3",
   "dependencies": {
     "botbuilder": "^3.2.3",
