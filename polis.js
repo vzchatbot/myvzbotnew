@@ -1,5 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
+var app = apiai('19c8bad1930f4e28ad3527a8a69fda04');
 
 //=========================================================
 // Bot Setup
@@ -24,5 +25,25 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', function (session) {
-    session.send("Hello World");
+    
+     var options = {        sessionId:'123456789abcdefghsuresh'				}
+      var request = app.textRequest(session.message.text, options);
+    
+     //session.send("Hello World");
+    request.on('response', function (response) {
+        var intent = response.result.action;        
+        console.log(JSON.stringify(response));
+
+        session.send(response.result.fulfillment.speech);   
+		var msg = new builder.Message(session).attachment(response.result.fulfillment.data.facebook.attachment		);
+        console.log(JSON.stringify(msg));
+        session.send(msg);
+    });
+    
+    request.on('error', function (error)
+      {
+        console.log(error);
+    });
+    request.end()
+    
 });
