@@ -30,7 +30,13 @@ bot.dialog('/', function (session) {
     
      var options = {        sessionId:'123456789abcdefghsuresh'				}
       var request = app.textRequest(session.message.text, options);
-    
+    if(session.message.text =="billsummary")
+    {
+	    session.send("CURR_BAL is $220.64");
+    }
+	else
+	{
+		
      //session.send("Hello World");
     request.on('response', function (response) {
         var intent = response.result.action;        
@@ -45,6 +51,6 @@ bot.dialog('/', function (session) {
       {
         console.log(error);
     });
-    request.end()
-    
+    request.end();
+	}
 });
