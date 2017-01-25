@@ -2,6 +2,8 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var request = require('request');
 var apiai = require('apiai');
+var APIAI_ACCESS_TOKEN = "c8021e1a2dac4f85aee8f805a5a920b2"; 
+var apiAiService = apiai(APIAI_ACCESS_TOKEN);
 //=========================================================
 // Bot Setup
 //=========================================================
@@ -17,8 +19,7 @@ var connector = new builder.ChatConnector({
 });
 var bot = new builder.UniversalBot(connector);
 var APIAI_LANG = 'en' ;
-var APIAI_ACCESS_TOKEN = "c8021e1a2dac4f85aee8f805a5a920b2"; 
-var apiAiService = apiai(APIAI_ACCESS_TOKEN, {language: APIAI_LANG, requestSource: "fb"});
+
 server.post('/api/messages', connector.listen());
 
 //=========================================================
@@ -33,8 +34,8 @@ bot.dialog('/', function (session) {
 	*/
 	var options = { sessionId: '1214209198672394' };
 	console.log("options",options);
-	 var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
-	console.log("apiaiRequest" ,+ JSON.stringify(apiaiRequest));
+//	 var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
+	//console.log("apiaiRequest" ,+ JSON.stringify(apiaiRequest));
         apiaiRequest .on('response', function (response)  {
 	 showBillInfo(response,session,function (str){ showBillInfoCallback(str,session)});
 	});
