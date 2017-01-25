@@ -34,9 +34,10 @@ bot.dialog('/', function (session) {
 	*/
 	var options = { sessionId: '1214209198672394' };
 	console.log("options",options);
-//	 var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
-	//console.log("apiaiRequest" ,+ JSON.stringify(apiaiRequest));
-        apiaiRequest .on('response', function (response)  {
+	var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
+	console.log("apiaiRequest");
+        apiaiRequest.on('response', function (response)  {
+		console.log("response",+ JSON.stringify(response));
 	 showBillInfo(response,session,function (str){ showBillInfoCallback(str,session)});
 	});
 	
