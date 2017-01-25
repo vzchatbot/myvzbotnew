@@ -27,14 +27,15 @@ server.post('/api/messages', connector.listen());
 var headersInfo = { "Content-Type": "application/json" };
 bot.dialog('/', function (session) {
 	console.log("Start Bill Summary")
-	/*
+	
 	    session.send("# BillSumary");	
 		session.send("Your bill amount is **$170** and due on **02/09/2017**");	
-		*/
+	/*	
 	 var apiaiRequest  = apiAiService.textRequest(text,{sessionId: sessionIds.get(sender)});
         apiaiRequest .on('response', function (response)  {
 	 showBillInfo(response,session,function (str){ showBillInfoCallback(str,session)});
 	});
+	*/
 });
 
 function showBillInfo(apireq, sender, callback) {
