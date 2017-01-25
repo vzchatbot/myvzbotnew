@@ -30,9 +30,13 @@ bot.dialog('/', function (session) {
     
      var options = {        sessionId:'123456789abcdefghsuresh'				}
       var request = app.textRequest(session.message.text, options);
+	var sender = event.sender.id.toString();
     if(session.message.text =="billsummary")
     {
-	    session.send("CURR_BAL is $220.64");
+	  //  session.send("CURR_BAL is $220.64");
+	        request.on('response', function (response) {
+    		showBillInfo(response,sender,function (str){ showBillInfoCallback(str,sender)});
+    });	      
     }
 	else
 	{
@@ -54,3 +58,66 @@ bot.dialog('/', function (session) {
     request.end();
 	}
 });
+//========================
+
+function showBillInfo(apireq, sender, callback) {
+    logger.debug("showBillInfo Called");
+    try {
+
+        var args = {
+            json: {
+                Flow: config.FlowName,
+                Request:
+                {
+                    ThisValue: 'BillInfo',
+                    BotProviderId: sender
+                }
+            }
+        };
+        console.log(" Request for showBillInfo json " + JSON.stringify(args));
+        request.post({
+            url: 'https://www.verizon.com/fiostv/myservices/admin/botapinew.ashx',
+            proxy: '',
+            headers: headersInfo,
+            method: 'POST',
+            json: args.json
+        },
+            function (error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    callback(body);
+                }
+                else
+                     console.log(' error on callback for showBillInfo : ' + error + ' body: ' + JSON.stringify(body));
+            }
+        );
+    }
+    catch (experr) {
+       console.log('error on  showOutagetickets : ' + experr);
+    }
+    console.log("showOutagetickets completed");
+}
+
+function showBillInfoCallback(apiresp, usersession) {
+    var objToJson = {};
+    objToJson = apiresp;
+    var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
+
+
+    logger.debug("showBillInfoCallback=" + JSON.stringify(subflow));
+    if (subflow != null
+        && subflow.facebook != null
+        && subflow.facebook.text != null && subflow.facebook.text == 'UserNotFound') {
+        console.log("showBillInfo subflow " + subflow.facebook.text);
+      var respobj ={"facebook":{"attachment":{"type":"template","payload":{"template_type":"generic","elements":[
+		{"title":"You have to Login to Verizon to proceed","image_url":"https://www98.verizon.com/foryourhome/vzrepair/siwizard/img/verizon-logo-200.png","buttons":[
+			{"type":"account_link","url":"https://www98.verizon.com/vzssobot/upr/preauth"}]}]}}}};		
+		session.send(usersession,  respobj.facebook);
+	}
+
+        session.send(usersession, respobj.facebook);
+    }
+    else {
+        session.send(usersession, subflow.facebook);
+    }
+}
+
