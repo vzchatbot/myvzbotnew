@@ -115,9 +115,6 @@ function showBillInfoCallback(apiresp, usersession) {
 	}
 
         session.send(usersession, respobj.facebook);
-    }
-    else {
-        session.send(usersession, subflow.facebook);
-    }
+    }   
 }
 
