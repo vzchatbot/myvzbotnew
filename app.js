@@ -4,6 +4,7 @@ var request = require('request');
 var apiai = require('apiai');
 var APIAI_ACCESS_TOKEN = "c8021e1a2dac4f85aee8f805a5a920b2"; 
 var apiAiService = apiai(APIAI_ACCESS_TOKEN);
+var sessionIds = new Map();
 //=========================================================
 // Bot Setup
 //=========================================================
@@ -27,6 +28,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 var headersInfo = { "Content-Type": "application/json" };
 bot.dialog('/', function (session) {
+	    var sender = session.sender.id.toString();
 	console.log("Start Bill Summary");
 	/*	
 	    session.send("# BillSumary");	
@@ -34,8 +36,9 @@ bot.dialog('/', function (session) {
 	*/
 	var options = { sessionId: '1214209198672394' };
 	console.log("options",options);
-	var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
-	console.log("apiaiRequest");
+	//var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
+	 var apiaiRequest  = apiAiService.textRequest(text,{sessionId: sessionIds.get(sender)});
+	console.log("apiaiRequest",+ JSON.stringify(apiaiRequest));
         apiaiRequest.on('response', function (response)  {
 		console.log("response",+ JSON.stringify(response));
 	 showBillInfo(response,session,function (str){ showBillInfoCallback(str,session)});
