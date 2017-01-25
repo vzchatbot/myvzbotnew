@@ -30,10 +30,14 @@ bot.dialog('/', function (session) {
 
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
-    if (session.message.text == "billsummary") {
-		session.send("CURR_BAL is $220.64");
+    if (session.message.text == "mybill" || session.message.text == "bill") {
+		session.send("# BillSummary");
+	    	session.send("your bill amount is **$170** and due on **02/09/2017**);			     
     }
-	else {
+     else if (session.message.text == "show outage" || session.message.text == "outage" ||  session.message.text == "any outage") {
+		session.send("I see there's an outage in your area.It's expected to be resolved by tonight,The ticket number is **MAEQ038807**.Sorry for the inconvenience");			     
+    }
+    else {
 
 		//session.send("Hello World");
 		request.on('response', function (response) {
