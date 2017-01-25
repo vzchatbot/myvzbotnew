@@ -20,5 +20,5 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', function (session) {
-	    session.send("#H1BillSumary--- Your bill amount is **$170** and due on **02/09/2017**");	        
+	    session.send("# BillSumary --- Your bill amount is **$170** and due on **02/09/2017**");	        
 });
