@@ -53,11 +53,11 @@ bot.dialog('/', function (session) {
         session.send(msg);
     });
     
-    request.on('error', function (error)
+    req.on('error', function (error)
       {
         console.log(error);
     });
-    request.end();
+    req.end();
 	}
 });
 //========================
