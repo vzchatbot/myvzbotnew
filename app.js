@@ -20,6 +20,6 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', function (session) {
-	    session.send("# BillSumary);	
+	    session.send("# BillSumary");	
 		session.send("Your bill amount is **$170** and due on **02/09/2017**");	
 });
