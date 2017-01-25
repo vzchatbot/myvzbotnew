@@ -1,7 +1,6 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var apiai = require('apiai');
-//var app = apiai('19c8bad1930f4e28ad3527a8a69fda04');
 var app = apiai('ba4202d56cf34d9c9b1dfb12162efc7f');
 
 //=========================================================
@@ -29,7 +28,7 @@ server.post('/api/messages', connector.listen());
 bot.dialog('/', function (session) {
     
      var options = {        sessionId:'123456789abcdefghsuresh'				}
-      var req = app.textRequest(session.message.text, options);
+      var request = app.textRequest(session.message.text, options);
 	var sender = event.sender.id.toString();
 	console.log("session.message.text" ,+ JSON.stringify(session.message.text));
     if(session.message.text =="billsummary")
@@ -40,20 +39,6 @@ bot.dialog('/', function (session) {
 	else
 	{
 		
-     //session.send("Hello World");
-    req.on('response', function (response) {
-        var intent = response.result.action;        
-        console.log(JSON.stringify(response));
-        session.send(response.result.fulfillment.speech);   
-	var msg = new builder.Message(session).attachment(response.result.fulfillment.data.facebook.attachment);
-        console.log(JSON.stringify(msg));
-        session.send(msg);
-    });
     
-    req.on('error', function (error)
-      {
-        console.log(error);
-    });
-    req.end();
 	}
 });
