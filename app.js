@@ -35,7 +35,7 @@ bot.dialog('/', function (session) {
 	console.log("session.message.text" ,+ JSON.stringify(session.message.text));
     if(session.message.text =="billsummary")
     {
-	  //  session.send("CURR_BAL is $220.64");
+	    session.send("CURR_BAL is $220.64");
 	    console.log("Inside Bill Summary******");
 	    /*
 	        request.on('response', function (response) {
