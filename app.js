@@ -32,6 +32,7 @@ bot.dialog('/', function (session) {
 		session.send("Your bill amount is **$170** and due on **02/09/2017**");	
 	*/
 	var options = { sessionId: '1214209198672394' }
+	console.log("options",options)
 	 var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
 	console.log("apiaiRequest" ,+ JSON.stringify(apiaiRequest))
         apiaiRequest .on('response', function (response)  {
