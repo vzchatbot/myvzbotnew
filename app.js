@@ -32,6 +32,7 @@ bot.dialog('/', function (session) {
      var options = {        sessionId:'123456789abcdefghsuresh'				}
       var req = app.textRequest(session.message.text, options);
 	var sender = event.sender.id.toString();
+	console.log("session.message.text" ,+ JSON.stringify(session.message.text));
     if(session.message.text =="billsummary")
     {
 	  //  session.send("CURR_BAL is $220.64");
