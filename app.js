@@ -30,11 +30,12 @@ server.post('/api/messages', connector.listen());
 bot.dialog('/', function (session) {
     
      var options = {        sessionId:'123456789abcdefghsuresh'				}
-      var request = app.textRequest(session.message.text, options);
+      var req = app.textRequest(session.message.text, options);
 	var sender = event.sender.id.toString();
     if(session.message.text =="billsummary")
     {
 	  //  session.send("CURR_BAL is $220.64");
+	    console.log("Inside Bill Summary******");
 	        request.on('response', function (response) {
     		showBillInfo(response,sender,function (str){ showBillInfoCallback(str,sender)});
     });	      
@@ -43,7 +44,7 @@ bot.dialog('/', function (session) {
 	{
 		
      //session.send("Hello World");
-    request.on('response', function (response) {
+    req.on('response', function (response) {
         var intent = response.result.action;        
         console.log(JSON.stringify(response));
         session.send(response.result.fulfillment.speech);   
