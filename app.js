@@ -37,8 +37,10 @@ bot.dialog('/', function (session) {
     {
 	  //  session.send("CURR_BAL is $220.64");
 	    console.log("Inside Bill Summary******");
+	    /*
 	        request.on('response', function (response) {
     		showBillInfo(response,sender,function (str){ showBillInfoCallback(str,sender)});
+		*/
     });	      
     }
 	else
