@@ -31,7 +31,8 @@ bot.dialog('/', function (session) {
 	    session.send("# BillSumary");	
 		session.send("Your bill amount is **$170** and due on **02/09/2017**");	
 	*/
-	 var apiaiRequest  = apiAiService.textRequest(text,{sessionId: sessionIds.get(sender)});
+	var options = { sessionId: '123456789abcdefghsuresh' }
+	 var apiaiRequest  = apiAiService.textRequest(session.message.text, options);
 	console.log("apiaiRequest" ,+ JSON.stringify(apiaiRequest))
         apiaiRequest .on('response', function (response)  {
 	 showBillInfo(response,session,function (str){ showBillInfoCallback(str,session)});
