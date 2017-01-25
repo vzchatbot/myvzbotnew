@@ -36,7 +36,7 @@ bot.dialog('/', function (session) {
     }
      else if (session.message.text == "show outage" || session.message.text == "outage" ||  session.message.text == "any outage") {
 	     session.send("# Sorry for the inconvenience");
-		session.send("* I see there's an outage in your area.It's expected to be resolved by tonight.");			     
+		session.send("* I see there's an outage in your area.");			     
 	     session.send("* It's expected to be resolved by tonight.");			     
 	     session.send("* The ticket number is **MAEQ038807**");			     
 	     
