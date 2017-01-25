@@ -35,7 +35,7 @@ bot.dialog('/', function (session) {
 	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
     }
      else if (session.message.text == "show outage" || session.message.text == "outage" ||  session.message.text == "any outage") {
-		session.send("*I see there's an outage in your area.*It's expected to be resolved by tonight.*The ticket number is **MAEQ038807**.*Sorry for the inconvenience");			     
+		session.send("* I see there's an outage in your area.It's expected to be resolved by tonight.The ticket number is **MAEQ038807**.Sorry for the inconvenience");			     
     }
     else {
 
