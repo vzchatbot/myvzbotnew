@@ -116,5 +116,5 @@ function showBillInfoCallback(apiresp, usersession) {
 
         session.send(usersession, respobj.facebook);
     }   
-}
+
 
