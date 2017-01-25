@@ -20,5 +20,5 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', function (session) {
-	    session.send("CURR_BAL is $220.64");	        
+	    session.send("Your bill amount is **$170** and due on **02/09/2017**");	        
 });
