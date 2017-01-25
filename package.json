@@ -4,7 +4,8 @@
   "dependencies": {
     "botbuilder": "^3.2.3",
     "restify": "^4.1.1",
-     "apiai": "^2.0.7"
+     "apiai": "^2.0.7",
+    "request": "^2.73.0"
   },
   "engines": {
     "node": "0.12.x",
