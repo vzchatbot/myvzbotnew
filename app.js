@@ -40,8 +40,8 @@ bot.dialog('/', function (session) {
 	    /*
 	        request.on('response', function (response) {
     		showBillInfo(response,sender,function (str){ showBillInfoCallback(str,sender)});
-		*/
-    });	      
+		
+    });	 */     
     }
 	else
 	{
