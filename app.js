@@ -30,15 +30,16 @@ bot.dialog('/', function (session) {
 
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
-    if (session.message.text == "mybill" || session.message.text == "bill") {
+    if (session.message.text == "my bill" || session.message.text == "bill" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
 		session.send("# BillSummary");
 	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
     }
      else if (session.message.text == "show outage" || session.message.text == "outage" ||  session.message.text == "any outage") {
 	     session.send("# Sorry for the inconvenience");
-		session.send("* I see there's an outage in your area.");			     
+		session.send("* I see there's an outage in your area.");
+	     session.send("* The ticket number is **MAEQ038807**");	
 	     session.send("* It's expected to be resolved by tonight.");			     
-	     session.send("* The ticket number is **MAEQ038807**");			     
+	     		     
 	     
     }
     else {
