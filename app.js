@@ -27,6 +27,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', function (session) {
+	console.log("Entering 1st");
 
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
