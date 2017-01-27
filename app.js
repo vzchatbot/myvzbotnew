@@ -32,7 +32,7 @@ bot.dialog('/', function (session) {
 	var request = app.textRequest(session.message.text, options);
     if (session.message.text == "my bill" || session.message.text == "bill" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
 		session.send("# BillSummary");
-	    	session.send("your bill amount is **$139** and due on **02/09/2017**");			     
+	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
     }
      else if (session.message.text == "show outage" || session.message.text == "outage" ||  session.message.text == "any outage") {
 	     session.send("# Sorry for the inconvenience");
