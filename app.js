@@ -43,7 +43,7 @@ bot.dialog('/', function (session) {
 	     		     
 	     
     } else if (session.message.text == "bill") {	
-	      console.log(" bill****** ");
+	  //    console.log(" bill****** ");
 	       /*
 	      showOutagetickets(response,session,function (str){ showOutageticketsCallback(str,session)});
 	 */
