@@ -31,7 +31,7 @@ bot.dialog('/', function (session) {
 
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
-    if (session.message.text == "my bill" || session.message.text == "bill" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
+    if (session.message.text == "my bill" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
 		session.send("# BillSummary");
 	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
     }
@@ -42,7 +42,7 @@ bot.dialog('/', function (session) {
 	     session.send("* It's expected to be resolved by tonight.");			     
 	     		     
 	     
-    } else if (session.message.text == "bill12") {
+    } else if (session.message.text == "bill") {
 	   request.on('response', function (response) {
 			var intent = response.result.action;
 			console.log(" Response****** ", + JSON.stringify(response));
