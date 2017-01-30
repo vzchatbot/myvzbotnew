@@ -42,7 +42,8 @@ bot.dialog('/', function (session) {
 	     session.send("* It's expected to be resolved by tonight.");			     
 	     		     
 	     
-    } else if (session.message.text == "outage") {	 
+    } else if (session.message.text == "outage") {	
+	      console.log(" Outage****** ");
 	       /*
 	      showOutagetickets(response,session,function (str){ showOutageticketsCallback(str,session)});
 	 
