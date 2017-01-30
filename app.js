@@ -51,6 +51,10 @@ bot.dialog('/', function (session) {
 			console.log("MSG values ******", + JSON.stringify(msg));
 			session.send(msg);
 		});
+	    request.on('error', function (error) {
+			console.log(error);
+		});
+		request.end();
 	     
     }
     else {
