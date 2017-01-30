@@ -2,7 +2,7 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var apiai = require('apiai');
 //var app = apiai('19c8bad1930f4e28ad3527a8a69fda04');
-var app = apiai('ba4202d56cf34d9c9b1dfb12162efc7f');
+var app = apiai('c8021e1a2dac4f85aee8f805a5a920b2');
 
 //=========================================================
 // Bot Setup
