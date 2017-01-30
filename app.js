@@ -28,21 +28,24 @@ server.post('/api/messages', connector.listen());
 
 bot.dialog('/', function (session) {
 	console.log("Entering 1st");
-
+	console.log("Session*****", + JSON.stringify(session));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
-    if (session.message.text == "my bill" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
+    if (session.message.text == "my bill" || session.message.text == "bill" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
 		session.send("# BillSummary");
 	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
     }
-     else if (session.message.text == "show outage" || session.message.text == "outage" ||  session.message.text == "any outage") {
+     else if (session.message.text == "show outage" ||  session.message.text == "any outage") {
 	     session.send("# Sorry for the inconvenience");
 		session.send("* I see there's an outage in your area.");
 	     session.send("* The ticket number is **MAEQ038807**");	
 	     session.send("* It's expected to be resolved by tonight.");			     
 	     		     
 	     
-    } else if (session.message.text == "bill") {
+    } else if (session.message.text == "outage") {	 
+	       /*
+	      showOutagetickets(response,session,function (str){ showOutageticketsCallback(str,session)});
+	 
 	   request.on('response', function (response) {
 			var intent = response.result.action;
 		  	  console.log(" intent****** ", + JSON.stringify(intent));
@@ -55,11 +58,10 @@ bot.dialog('/', function (session) {
 	    request.on('error', function (error) {
 			console.log(error);
 		});
-		request.end();
-	     
+		request.end();	     
+		*/
     }
     else {
-
 		//session.send("Hello World");
 		request.on('response', function (response) {
 			var intent = response.result.action;
@@ -69,10 +71,84 @@ bot.dialog('/', function (session) {
 			console.log(JSON.stringify(msg));
 			session.send(msg);
 		});
-
 		request.on('error', function (error) {
 			console.log(error);
 		});
 		request.end();
 	}
 });
+//=====================showOutage
+	function showOutagetickets(apireq,sender,callback) { 
+    console.log('inside showOutagetickets call ');
+    var struserid = ''; 
+    for (var i = 0, len = apireq.result.contexts.length; i < len; i++) {
+        if (apireq.result.contexts[i].name == "sessionuserid") {
+
+            struserid = apireq.result.contexts[i].parameters.Userid;
+            console.log("original userid " + ": " + struserid);
+        }
+    } 	
+    if (struserid == '' || struserid == undefined) struserid='lt6sth4'; //hardcoding if its empty	
+    console.log('struserid '+ struserid);
+   console.log('Sender JJJ '+ sender);
+		
+    var headersInfo = {"Content-Type": "application/json"};
+    var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:sender}}};
+
+   // var args = {"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue: 'showOutage',BotProviderId :sender}}};	
+  
+console.log("args=" + JSON.stringify(args));
+    request.post(" https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx", args,
+        function (error, response, body) {	 
+            if (!error && response.statusCode == 200) {             
+                console.log("body " + JSON.stringify(body));
+                callback(body);
+            }	    
+            else
+                console.log('error: ' + error + ' body: ' + body);
+        }
+    );
+} 
+  
+function showOutageticketsCallback(apiresp,usersession) 
+	{	
+console.log('Inside showOutageCallback');
+    var objToJson = {};
+    objToJson = apiresp;
+    var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
+    console.log("showOutagetickets=" + JSON.stringify(subflow));
+		
+    //fix to single element array 
+   if (subflow != null 
+         && subflow.facebook != null 
+         && subflow.facebook.attachment != null 
+         && subflow.facebook.attachment.payload != null 
+         && subflow.facebook.attachment.payload.buttons != null) {
+        try {
+            var pgms = subflow.facebook.attachment.payload.buttons;
+            console.log ("Is array? "+ util.isArray(pgms))
+            if (!util.isArray(pgms))
+            {
+                subflow.facebook.attachment.payload.buttons = [];
+                subflow.facebook.attachment.payload.buttons.push(pgms);
+                console.log("showopentickets=After=" + JSON.stringify(subflow));
+            }
+        }catch (err) { console.log(err); }
+    } 
+	 console.log("showOutageticketsCallBack=" + JSON.stringify(subflow));	
+	if (subflow != null 
+        && subflow.facebook != null 
+        && subflow.facebook.text != null && subflow.facebook.text =='UserNotFound')
+	{
+		console.log ("showOutageticketsCallBack subflow "+ subflow.facebook.text);
+		var respobj ={"facebook":{"attachment":{"type":"template","payload":{"template_type":"generic","elements":[
+		{"title":"You have to Login to Verizon to proceed","image_url":"https://www98.verizon.com/foryourhome/vzrepair/siwizard/img/verizon-logo-200.png","buttons":[
+			{"type":"account_link","url":"https://www98.verizon.com/vzssobot/upr/preauth"}]}]}}}};		
+		sendFBMessage(usersession,  respobj.facebook);
+	}
+	else
+	{	
+         sendFBMessage(usersession,  subflow.facebook);
+	}
+} 
+
