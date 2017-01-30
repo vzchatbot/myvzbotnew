@@ -30,7 +30,7 @@ bot.dialog('/', function (session) {
 	console.log("Entering 1st");
 	//console.log("Session*****", + JSON.stringify(session));
 	  console.log(" Session****** ", (session));
-	console.log("sender",(sender));
+	//console.log("sender",(sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
     if (session.message.text == "my bill" || session.message.text == "qqqq" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
@@ -46,9 +46,10 @@ bot.dialog('/', function (session) {
 	     
     } else if (session.message.text == "bill") {	
 	     console.log("bill******");
-	       /*
+	      
 	      showOutagetickets(response,session,function (str){ showOutageticketsCallback(str,session)});
-	 */
+	
+	    /*
 	   request.on('response', function (response) {
 			var intent = response.result.action;
 		  	  console.log(" intent****** ", + JSON.stringify(intent));
@@ -61,7 +62,7 @@ bot.dialog('/', function (session) {
 	    request.on('error', function (error) {
 			console.log(error);
 		});
-		request.end();	     
+		request.end();	   */  
 		
     }
     else {
