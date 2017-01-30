@@ -46,7 +46,7 @@ bot.dialog('/', function (session) {
 	      console.log(" Outage****** ");
 	       /*
 	      showOutagetickets(response,session,function (str){ showOutageticketsCallback(str,session)});
-	 
+	 */
 	   request.on('response', function (response) {
 			var intent = response.result.action;
 		  	  console.log(" intent****** ", + JSON.stringify(intent));
@@ -60,7 +60,7 @@ bot.dialog('/', function (session) {
 			console.log(error);
 		});
 		request.end();	     
-		*/
+		
     }
     else {
 		//session.send("Hello World");
