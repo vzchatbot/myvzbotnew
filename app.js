@@ -45,7 +45,7 @@ bot.dialog('/', function (session) {
 	     		     
 	     
     } else if (session.message.text == "outage") {	
-	     console.log("outage******");
+	  //   console.log("outage******");
 	      
 	      showOutagetickets(response,sender,function (str){ showOutageticketsCallback(str,sender)});
 	
