@@ -29,8 +29,8 @@ var sender= '1214209198672394';
 bot.dialog('/', function (session) {
 	console.log("Entering 1st");
 	//console.log("Session*****", + JSON.stringify(session));
-	  console.log(" Session****** ", (session));
-	//console.log("sender",(sender));
+	//  console.log(" Session****** ", (session));
+	console.log("sender",(sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
     if (session.message.text == "my bill" || session.message.text == "qqqq" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
@@ -44,8 +44,8 @@ bot.dialog('/', function (session) {
 	     session.send("* It's expected to be resolved by tonight.");			     
 	     		     
 	     
-    } else if (session.message.text == "bill") {	
-	     console.log("bill******");
+    } else if (session.message.text == "outage") {	
+	     console.log("outage******");
 	      
 	      showOutagetickets(response,sender,function (str){ showOutageticketsCallback(str,sender)});
 	
