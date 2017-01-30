@@ -45,9 +45,10 @@ bot.dialog('/', function (session) {
     } else if (session.message.text == "bill") {
 	   request.on('response', function (response) {
 			var intent = response.result.action;
+		  	  console.log(" intent****** ", + JSON.stringify(intent));
 			console.log(" Response****** ", + JSON.stringify(response));
 			session.send(response.result.fulfillment.speech);
-			var msg = new builder.Message(session).attachment(response.result.fulfillment.data.facebook.attachment);
+			var msg = new builder.Message(session).attachment(response.result.fulfillment.data);
 			console.log("MSG values ******", + JSON.stringify(msg));
 			session.send(msg);
 		});
