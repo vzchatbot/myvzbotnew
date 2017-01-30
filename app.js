@@ -28,7 +28,7 @@ server.post('/api/messages', connector.listen());
 
 bot.dialog('/', function (session) {
 	console.log("Entering 1st");
-	console.log("Session*****", + JSON.stringify(session));
+	//console.log("Session*****", + JSON.stringify(session));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var request = app.textRequest(session.message.text, options);
     if (session.message.text == "my bill" || session.message.text == "qqqq" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
