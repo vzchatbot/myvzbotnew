@@ -46,9 +46,24 @@ bot.dialog('/', function (session) {
 	     
     } else if (session.message.text == "outage") {	
 	  //   console.log("outage******");
-	      
+	       var apiaiRequest  = apiAiService.textRequest(text,{sessionId: sessionIds.get(sender)});
+       		 apiaiRequest .on('response', function (response)  {
+        	    if (isDefined(response.result)) {
+                var responseText = response.result.fulfillment.speech;
+                var responseData = response.result.fulfillment.data;
+                var action = response.result.action;		    
+                var intent = response.result.metadata.intentName;
+                console.log(JSON.stringify(response));
+                var Finished_Status=response.result.actionIncomplete;
+                console.log("Finished_Status "+ Finished_Status);		    
+                console.log('responseText  : - '+ responseText);
+                console.log('responseData  : - '+ responseData);
+                console.log('action : - '+ action );
+                console.log('intent : - '+ intent );	
 	      showOutagetickets(response,sender,function (str){ showOutageticketsCallback(str,sender)});
-	
+	   apiaiRequest.end();
+    }
+}
 	    /*
 	   request.on('response', function (response) {
 			var intent = response.result.action;
