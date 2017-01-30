@@ -42,6 +42,16 @@ bot.dialog('/', function (session) {
 	     session.send("* It's expected to be resolved by tonight.");			     
 	     		     
 	     
+    } else if (session.message.text == "bill12") {
+	   request.on('response', function (response) {
+			var intent = response.result.action;
+			console.log(JSON.stringify(response));
+			session.send(response.result.fulfillment.speech);
+			var msg = new builder.Message(session).attachment(response.result.fulfillment.data.facebook.attachment);
+			console.log(JSON.stringify(msg));
+			session.send(msg);
+		});
+	     
     }
     else {
 
