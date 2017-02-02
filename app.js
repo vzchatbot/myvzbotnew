@@ -60,10 +60,10 @@ bot.dialog('/', function (session) {
 					  }
                     
               });
-              request.on('error', function (error) {
+              req.on('error', function (error) {
                      console.log(error);
               });
-              request.end();
+              req.end();
 
 	
         
