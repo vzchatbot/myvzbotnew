@@ -34,22 +34,15 @@ bot.dialog('/', function (session) {
 	console.log("sender",(sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var req = app.textRequest(session.message.text, options);
-    if (session.message.text == "my bill" || session.message.text == "qqqq" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
-		session.send("# BillSummary");
-	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
-    }
-     else if (session.message.text == "show outage" ||  session.message.text == "any outage") {
-	     session.send("# Sorry for the inconvenience");
-		session.send("* I see there's an outage in your area.");
-	     session.send("* The ticket number is **MAEQ038807**");	
-	     session.send("* It's expected to be resolved by tonight.");			     
-	     		     
-	     
-    } 
-	else if(session.message.text=="test")
-	{
-	    console.log('inside showOutagetickets call ');
-            var struserid = '';    
+	
+	              req.on('response', function (response) {
+			      
+                     var intent = response.result.action;
+                     console.log(JSON.stringify(response));
+			 switch (straction) {					 
+				 case "showopentickets":
+			        case "showOutagetickets":
+					        var struserid = '';    
             struserid='lt6sth4'; //hardcoding if its empty	
             console.log('struserid '+ struserid);
             var headersInfo = {"Content-Type": "application/json"};
@@ -62,24 +55,18 @@ bot.dialog('/', function (session) {
             		showOutageticketsCallback(body,session)
         		}
     		});
-   	
- }
+					 break;
+					 
+					  }
+                    
+              });
+              request.on('error', function (error) {
+                     console.log(error);
+              });
+              request.end();
+
 	
-    else {
-		//session.send("Hello World");
-		req.on('response', function (response) {
-			var intent = response.result.action;
-			console.log(JSON.stringify(response));
-			session.send(response.result.fulfillment.speech);
-			var msg = new builder.Message(session).attachment(response.result.fulfillment.data.facebook.attachment);
-			console.log(JSON.stringify(msg));
-			session.send(msg);
-		});
-		request.on('error', function (error) {
-			console.log(error);
-		});
-		request.end();
-	}
+        
 });
 
   
