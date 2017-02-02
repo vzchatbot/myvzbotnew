@@ -90,7 +90,7 @@ function showOutageticketsCallback(apiresp,session)
     objToJson = apiresp;
     var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
     console.log("showOutagetickets=" + JSON.stringify(subflow));
-	session.send('### '+subflow.facebook.text);
+	session.send(subflow.facebook.text);
  
 } 
 
