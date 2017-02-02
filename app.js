@@ -37,7 +37,7 @@ bot.dialog('/', function (session) {
 	
 	              req.on('response', function (response) {
 			      
-                     var intent = response.result.action;
+                     var straction = response.result.action;
                      console.log(JSON.stringify(response));
 			 switch (straction) {					 
 				 case "showopentickets":
