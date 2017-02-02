@@ -53,7 +53,7 @@ bot.dialog('/', function (session) {
             struserid='lt6sth4'; //hardcoding if its empty	
             console.log('struserid '+ struserid);
             var headersInfo = {"Content-Type": "application/json"};
-            var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'1214209198672394'}}};
+            var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'1422076921145354'}}};
 
             console.log("args=" + JSON.stringify(args));
 		request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',args,
