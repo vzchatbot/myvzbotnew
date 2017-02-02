@@ -59,7 +59,7 @@ bot.dialog('/', function (session) {
 		request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',args,
     		function (error, response, body) {
         		if (!error && response.statusCode == 200) {
-            		console.log(body)
+            		showOutageticketsCallback(body)
         		}
     		});
    	
