@@ -53,13 +53,13 @@ bot.dialog('/', function (session) {
             struserid='lt6sth4'; //hardcoding if its empty	
             console.log('struserid '+ struserid);
             var headersInfo = {"Content-Type": "application/json"};
-            var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'123'}}};
+            var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'1214209198672394'}}};
 
             console.log("args=" + JSON.stringify(args));
 		request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',args,
     		function (error, response, body) {
         		if (!error && response.statusCode == 200) {
-            		showOutageticketsCallback(body)
+            		showOutageticketsCallback(body,session)
         		}
     		});
    	
@@ -83,7 +83,7 @@ bot.dialog('/', function (session) {
 });
 
   
-function showOutageticketsCallback(apiresp) 
+function showOutageticketsCallback(apiresp,session) 
 {	
     console.log('Inside showOutageCallback');
     var objToJson = {};
