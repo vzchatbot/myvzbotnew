@@ -33,7 +33,7 @@ bot.dialog('/', function (session) {
 	//  console.log(" Session****** ", (session));
 	console.log("sender",(sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
-	var request = app.textRequest(session.message.text, options);
+	var req = app.textRequest(session.message.text, options);
     if (session.message.text == "my bill" || session.message.text == "qqqq" || session.message.text == "what is my bill"|| session.message.text == "show my bill"|| session.message.text == "bill?") {
 		session.send("# BillSummary");
 	    	session.send("your bill amount is **$170** and due on **02/09/2017**");			     
@@ -56,7 +56,7 @@ bot.dialog('/', function (session) {
             var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'123'}}};
 
             console.log("args=" + JSON.stringify(args));
-		req.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',args,
+		request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',args,
     		function (error, response, body) {
         		if (!error && response.statusCode == 200) {
             		console.log(body)
@@ -67,7 +67,7 @@ bot.dialog('/', function (session) {
 	
     else {
 		//session.send("Hello World");
-		request.on('response', function (response) {
+		req.on('response', function (response) {
 			var intent = response.result.action;
 			console.log(JSON.stringify(response));
 			session.send(response.result.fulfillment.speech);
