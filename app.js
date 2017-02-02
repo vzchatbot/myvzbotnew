@@ -1,6 +1,7 @@
 var restify = require('restify');
 var builder = require('botbuilder');
 var apiai = require('apiai');
+var req = require('request');
 //var app = apiai('19c8bad1930f4e28ad3527a8a69fda04');
 var app = apiai('c8021e1a2dac4f85aee8f805a5a920b2');
 
@@ -55,7 +56,7 @@ bot.dialog('/', function (session) {
             var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'123'}}};
 
             console.log("args=" + JSON.stringify(args));
-    request.post(" https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx", args,
+    req.post(" https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx", args,
         function (error, response, body) {	 
             if (!error && response.statusCode == 200) {             
                 console.log("body " + JSON.stringify(body));
