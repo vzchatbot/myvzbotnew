@@ -104,6 +104,13 @@ var connector = new builder.ChatConnector({
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 var sender= '1214209198672394';
+
+server.get('/apipolling/', function (req, res) {
+    logger.debug("Inside api polling");
+    res.send("ebizResponse");
+
+});
+
 //=========================================================
 // Bots Dialogs
 //=========================================================
