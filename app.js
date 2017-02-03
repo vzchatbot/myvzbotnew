@@ -115,9 +115,9 @@ bot.dialog('/', function (session) {
 	console.log("sender",(sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var req = app.textRequest(session.message.text, options);
-	
+	console.log("Entering 2");
 	              req.on('response', function (response) {
-			      
+			      console.log("Entering 3");
                      var straction = response.result.action;
                      console.log(JSON.stringify(response));
 			 switch (straction) {					 
