@@ -50,11 +50,27 @@ log4js.configure({
 });
 var logger = log4js.getLogger("botws");
 var ChatHistoryLog = log4js.getLogger('Historylog');
-var app = express();
-app.use(bodyParser.text({ type: 'application/json' }));
 
-app.get('/apipolling/', function (req, res) {
-    logger.debug("Inside api polling");
+//=========================================================
+// Bot Setup
+//=========================================================
+// Setup Restify Server
+var server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, function () {
+    console.log('%s listening to %s', server.name, server.url);
+});
+
+// Create chat bot
+var connector = new builder.ChatConnector({
+    appId: 'f83feefc-16d4-485f-9395-d407ff0602a8',
+    appPassword: 'yq9ZmaxhNhbFJVh4AAP4gc6'
+});
+var bot = new builder.UniversalBot(connector);
+server.post('/api/messages', connector.listen());
+var sender= '1214209198672394';
+
+server.get('/apipolling/', function (req, res) {
+   logger.debug("Inside api polling");
     try {
         var ebizResponse = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><ebizcenter xmlns=\"http://tempuri.org/eBizCenter.xsd\"><version>1.2</version>";
         var sessioid = uuid.v1();
@@ -83,31 +99,6 @@ app.get('/apipolling/', function (req, res) {
         ebizResponse = ebizResponse + "<response code=\"F\"/><error><source_code>BE</source_code><description>[[[" + err + "]]]</description></error><parameters><parameter name=\"API.AI\" datatype= \"string\" paramtype=\"\">Failure</parameter></parameters></ebizcenter>";
         res.send(ebizResponse);
     }
-
-});
-
-//=========================================================
-// Bot Setup
-//=========================================================
-
-// Setup Restify Server
-var server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log('%s listening to %s', server.name, server.url);
-});
-
-// Create chat bot
-var connector = new builder.ChatConnector({
-    appId: 'f83feefc-16d4-485f-9395-d407ff0602a8',
-    appPassword: 'yq9ZmaxhNhbFJVh4AAP4gc6'
-});
-var bot = new builder.UniversalBot(connector);
-server.post('/api/messages', connector.listen());
-var sender= '1214209198672394';
-
-server.get('/apipolling/', function (req, res) {
-    logger.debug("Inside api polling");
-    res.send("ebizResponse");
 
 });
 
