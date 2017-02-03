@@ -2,8 +2,89 @@ var restify = require('restify');
 var builder = require('botbuilder');
 var apiai = require('apiai');
 var request = require('request');
-//var app = apiai('19c8bad1930f4e28ad3527a8a69fda04');
-var app = apiai('c8021e1a2dac4f85aee8f805a5a920b2');
+var express = require('express');
+var bodyParser = require('body-parser');
+var uuid = require('node-uuid');
+var JSONbig = require('json-bigint');
+var async = require('async');
+var log4js = require('log4js');
+var fs = require('fs');
+var util = require('util');
+
+var config = require('./config/devconfig.json');
+
+const vz_proxy = config.vz_proxy;
+var REST_PORT = (process.env.PORT || process.env.port || process.env.OPENSHIFT_NODEJS_PORT || 8080);
+var SEVER_IP_ADDR = process.env.OPENSHIFT_NODEJS_IP || process.env.HEROKU_IP || '127.0.0.1';
+var APIAI_ACCESS_TOKEN = config.APIAIACCESSTOKEN;
+var APIAI_LANG = 'en';
+var APIAI_VERIFY_TOKEN = "verify123";
+var apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb", proxy: config.vz_proxy, secure: true });
+var sessionIds = new Map();
+var userData = new Map();
+
+var app = apiai(APIAI_ACCESS_TOKEN);
+
+log4js.configure({
+    appenders: 
+ [
+        { type: 'console' },
+        {
+            type: 'dateFile', filename: 'botws.log', category: 'botws', "pattern": "-yyyy-MM-dd", "alwaysIncludePattern": false
+        },
+        {
+            type: 'logLevelFilter',
+            
+            level: 'Info', 
+            appender: {
+                type: "dateFile",
+                
+                filename: 'botHistorylog.log',
+                
+                category: 'Historylog', 
+                "pattern": "-yyyy-MM-dd", 
+                "alwaysIncludePattern": false
+            }
+        }
+    ]
+});
+var logger = log4js.getLogger("botws");
+var ChatHistoryLog = log4js.getLogger('Historylog');
+var app = express();
+app.use(bodyParser.text({ type: 'application/json' }));
+
+app.get('/apipolling/', function (req, res) {
+    logger.debug("Inside api polling");
+    try {
+        var ebizResponse = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><ebizcenter xmlns=\"http://tempuri.org/eBizCenter.xsd\"><version>1.2</version>";
+        var sessioid = uuid.v1();
+        var apiaiRequest = apiAiService.textProxyRequest("Hi polling", { sessionId: sessioid });
+
+        apiaiRequest.on('response', function (response) {
+
+            logger.debug("Polling apiai response " + response);
+            ebizResponse = ebizResponse + "<response code=\"S\"/><error/><parameters><parameter name=\"API.AI\" datatype= \"string\" paramtype=\"\">Success</parameter></parameters></ebizcenter>";
+            res.send(ebizResponse);
+
+        });
+
+        apiaiRequest.on('error', function (error) {
+
+            ebizResponse = ebizResponse + "<response code=\"F\"/><error><source_code>BE</source_code><description>[[[" + error + "]]]</description></error><parameters><parameter name=\"API.AI\" datatype= \"string\" paramtype=\"\">Failure</parameter></parameters></ebizcenter>";
+            res.send(ebizResponse);
+            logger.debug("Error on sending polling request to api.ai " + error);
+
+        });
+
+        apiaiRequest.end2();
+    }
+    catch (err) {
+        logger.debug("Error in sending polling api.ai " + err);
+        ebizResponse = ebizResponse + "<response code=\"F\"/><error><source_code>BE</source_code><description>[[[" + err + "]]]</description></error><parameters><parameter name=\"API.AI\" datatype= \"string\" paramtype=\"\">Failure</parameter></parameters></ebizcenter>";
+        res.send(ebizResponse);
+    }
+
+});
 
 //=========================================================
 // Bot Setup
