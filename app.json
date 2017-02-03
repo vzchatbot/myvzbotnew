@@ -4,7 +4,7 @@
   "repository": "https://github.com/hramprasath/polis.js",
   "logo": "http://node-js-sample.herokuapp.com/node.svg",
   "keywords": ["node", "express", "static", "body-parser"],
-  "image": "heroku/nodejs"
+  "image": "heroku/nodejs",
   "env": {
     "APIAI_ACCESS_TOKEN": {
       "description": "Client access token for Api.ai",
