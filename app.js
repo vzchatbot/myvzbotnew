@@ -110,6 +110,7 @@ var sender= '1214209198672394';
 
 bot.dialog('/', function (session) {
 	console.log("Entering 1st");
+	console.log("api.ai" + APIAI_ACCESS_TOKEN);
 	//console.log("Session*****", + JSON.stringify(session));
 	//  console.log(" Session****** ", (session));
 	console.log("sender",(sender));
