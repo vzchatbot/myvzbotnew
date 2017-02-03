@@ -19,11 +19,11 @@ var SEVER_IP_ADDR = process.env.OPENSHIFT_NODEJS_IP || process.env.HEROKU_IP || 
 var APIAI_ACCESS_TOKEN = config.APIAIACCESSTOKEN;
 var APIAI_LANG = 'en';
 var APIAI_VERIFY_TOKEN = "verify123";
-var apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb", proxy: config.vz_proxy, secure: true });
+//var apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb", proxy: config.vz_proxy, secure: true });
 var sessionIds = new Map();
 var userData = new Map();
 
-var app = apiai(APIAI_ACCESS_TOKEN);
+var apiAiService = apiai(APIAI_ACCESS_TOKEN);
 
 log4js.configure({
     appenders: 
@@ -115,7 +115,7 @@ bot.dialog('/', function (session) {
 	//  console.log(" Session****** ", (session));
 	console.log("sender",(sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
-	var req = app.textRequest(session.message.text, options);
+	var req = apiAiService.textRequest(session.message.text, options);
 	console.log("Entering 2");
 	              req.on('response', function (response) {
 			      console.log("Entering 3");
