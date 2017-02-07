@@ -180,8 +180,7 @@ function stationsearch(apireq, userCoversationArr, callback) {
 		logger.debug("json " + String(args));
 		
 		request({
-			url: config.UFD_rest_api,
-			proxy: config.vz_proxy,
+			url: config.UFD_rest_api,			
 			headers: config.headersInfo,
 			method: 'POST',
 			json: args.json
