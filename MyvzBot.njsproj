@@ -30,8 +30,7 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="polis - Copy %282%29.js" />
-    <Compile Include="polis - Copy.js" />
+    <Compile Include="FBapp.js" />
     <Compile Include="polis.js" />
     <Content Include="app.json" />
     <Content Include="help.txt" />

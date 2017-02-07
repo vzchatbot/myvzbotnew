@@ -9,7 +9,7 @@ var JSONbig = require('json-bigint');
 var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
-var util = require('util');
+//var util = require('util');
 
 var config = require('./config/devconfig.json');
 
@@ -109,47 +109,124 @@ server.get('/apipolling/', function (req, res) {
 bot.dialog('/', function (session) {
 	console.log("Entering 1st");
 	console.log("api.ai" + APIAI_ACCESS_TOKEN);
+	var userCoversationArr = '';
 	//console.log("Session*****", + JSON.stringify(session));
 	//  console.log(" Session****** ", (session));
-	console.log("sender",(sender));
+	console.log("sender", (sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var req = apiAiService.textRequest(session.message.text, options);
 	console.log("Entering 2");
-	              req.on('response', function (response) {
-			      console.log("Entering 3");
-                     var straction = response.result.action;
-                     console.log(JSON.stringify(response));
-			 switch (straction) {					 
-				 case "showopentickets":
-			        case "showOutagetickets":
-					        var struserid = '';    
-            struserid='lt6sth4'; //hardcoding if its empty	
-            console.log('struserid '+ struserid);
-            var headersInfo = {"Content-Type": "application/json"};
-            var args = {"headers":headersInfo,"json":{Flow:'TroubleShooting Flows\\ChatBot\\APIChatBot.xml',Request:{ThisValue:'showOutage',BotProviderId:'1422076921145354'}}};
-
-            console.log("args=" + JSON.stringify(args));
-		request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',args,
+	req.on('response', function (response) {
+		console.log("Entering 3");
+		var straction = response.result.action;
+		console.log(JSON.stringify(response));
+		
+		switch (straction) {					 
+			case "showopentickets":
+			case "showOutagetickets":
+				var struserid = '';
+				struserid = 'lt6sth4'; //hardcoding if its empty	
+				console.log('struserid ' + struserid);
+				var headersInfo = { "Content-Type": "application/json" };
+				var args = { "headers": headersInfo, "json": { Flow: 'TroubleShooting Flows\\ChatBot\\APIChatBot.xml', Request: { ThisValue: 'showOutage', BotProviderId: '1422076921145354' } } };
+				
+				console.log("args=" + JSON.stringify(args));
+				request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx', args,
     		function (error, response, body) {
-        		if (!error && response.statusCode == 200) {
-            		showOutageticketsCallback(body,session)
-        		}
-    		});
-					 break;
-					 
-					  }
+					if (!error && response.statusCode == 200) {
+						showOutageticketsCallback(body, session)
+					}
+				});
+				break;
+			case "channelsearch":
+				logger.debug("----->>>>>>>>>>>> INSIDE channelsearch <<<<<<<<<<<------");
+				//userCoversationArr.ufdreqdatetime = getDateTime();
+				stationsearch(response, userCoversationArr, function (str) { stationsearchCallback(str, sender, userCoversationArr) });
+				break;								 
+		}
                     
-              });
-              req.on('error', function (error) {
-                     console.log(error);
-              });
-              req.end();
-
-	
+	});
+	req.on('error', function (error) {
+		console.log(error);
+	});
+	req.end();	
         
 });
 
-  
+
+function stationsearch(apireq, userCoversationArr, callback) {
+	
+	logger.debug('Inside stationsearch started');
+	try {
+		var strChannelName = apireq.result.parameters.Channel.toUpperCase();
+		var strChannelNo = apireq.result.parameters.ChannelNo;
+		var strRegionid = 91629;
+		
+		logger.debug("strChannelName " + strChannelName + " strChannelNo: " + strChannelNo);
+		
+		var args = {
+			json: {
+				Flow: config.FlowName,
+				Request: {
+					ThisValue: 'StationSearch',
+					BotRegionID: strRegionid,
+					BotstrFIOSServiceId: strChannelNo, //channel number search
+					BotstrStationCallSign: strChannelName
+				}
+			}
+
+		};
+		
+		logger.debug("json " + String(args));
+		
+		request({
+			url: config.UFD_rest_api,
+			proxy: config.vz_proxy,
+			headers: config.headersInfo,
+			method: 'POST',
+			json: args.json
+		}, function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				
+				//console.log("body " + body);
+				callback(body);
+			}
+			else {
+				//userCoversationArr.ufdreq = 'error';
+				printChatHistory(userCoversationArr);
+				logger.debug('error on sending request to station search: ' + error + ' body: ' + body);
+			}
+		});
+	}
+    catch (experr) {
+		logger.debug('error on  station search detail : ' + experr);
+	}
+	logger.debug('Inside stationsearch completed');
+}
+
+function stationsearchCallback(apiresp, senderid, userCoversationArr) {
+	var objToJson = {};
+	objToJson = apiresp;
+	try {
+		
+		//userCoversationArr.ufdresdatetime = getDateTime();
+		//userCoversationArr.ufdTimeTaken = getsecondstaken('ufd', userCoversationArr.ufdreqdatetime, userCoversationArr.ufdresdatetime);
+		//userCoversationArr.ufdreq = 'passed';
+		printChatHistory(userCoversationArr);
+		
+		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
+		logger.debug("Station Search Response " + JSON.stringify(respobj));
+		
+		
+	}
+    catch (experr) {
+		logger.debug('error on  station search detail : ' + experr);
+	}
+	
+	logger.debug("station search completed");
+}
+
+
 function showOutageticketsCallback(apiresp,session) 
 {	
     console.log('Inside showOutageCallback');
@@ -157,7 +234,8 @@ function showOutageticketsCallback(apiresp,session)
     objToJson = apiresp;
     var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
     console.log("showOutagetickets=" + JSON.stringify(subflow));
-	session.send(subflow.facebook.text);
- 
-} 
-
+	session.send(subflow.facebook.text); 
+}
+function printChatHistory(userCoversationArr) {
+	
+}
