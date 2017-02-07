@@ -209,6 +209,8 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr) {
 	objToJson = apiresp;
 	try {
 		
+		logger.debug("stationsearchCallback ");
+
 		//userCoversationArr.ufdresdatetime = getDateTime();
 		//userCoversationArr.ufdTimeTaken = getsecondstaken('ufd', userCoversationArr.ufdreqdatetime, userCoversationArr.ufdresdatetime);
 		//userCoversationArr.ufdreq = 'passed';
