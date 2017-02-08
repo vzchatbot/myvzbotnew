@@ -217,52 +217,8 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj));
-		
-                session.endDialog(
-        new builder.HeroCard(session)
-            .title('Azure Storage')
-            .subtitle('Massively scalable cloud storage for your applications')
-            .text('Store and help protect your data. Get durable, highly available data storage across the globe and pay only for what you use.')
-            .images([
-                builder.CardImage.create(session, 'https://acom.azurecomcdn.net/80C57D/cdn/mediahandler/docarticles/dpsmedia-prod/azure.microsoft.com/en-us/documentation/articles/storage-introduction/20160801042915/storage-concepts.png')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://azure.microsoft.com/en-us/services/storage/', 'Learn More')
-            ]),
-
-        new builder.ThumbnailCard(session)
-            .title('DocumentDB')
-            .subtitle('Blazing fast, planet-scale NoSQL')
-            .text('NoSQL service for highly available, globally distributed apps—take full advantage of SQL and JavaScript over document and key-value data without the hassles of on-premises or virtual machine-based cloud database options.')
-            .images([
-                builder.CardImage.create(session, 'https://sec.ch9.ms/ch9/29f4/beb4b953-ab91-4a31-b16a-71fb6d6829f4/WhatisAzureDocumentDB_960.jpg')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://azure.microsoft.com/en-us/services/documentdb/', 'Learn More')
-            ]),
-
-        new builder.HeroCard(session)
-            .title('Azure Functions')
-            .subtitle('Process events with serverless code')
-            .text('Azure Functions is a serverless event driven experience that extends the existing Azure App Service platform. These nano-services can scale based on demand and you pay only for the resources you consume.')
-            .images([
-                builder.CardImage.create(session, 'https://azurecomcdn.azureedge.net/cvt-8636d9bb8d979834d655a5d39d1b4e86b12956a2bcfdb8beb04730b6daac1b86/images/page/services/functions/azure-functions-screenshot.png')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://azure.microsoft.com/en-us/services/functions/', 'Learn More')
-            ]),
-
-        new builder.ThumbnailCard(session)
-            .title('Cognitive Services')
-            .subtitle('Build powerful intelligence into your applications to enable natural and contextual interactions')
-            .text('Enable natural and contextual interaction with tools that augment users\' experiences using the power of machine-based intelligence. Tap into an ever-growing collection of powerful artificial intelligence algorithms for vision, speech, language, and knowledge.')
-            .images([
-                builder.CardImage.create(session, 'https://azurecomcdn.azureedge.net/cvt-8636d9bb8d979834d655a5d39d1b4e86b12956a2bcfdb8beb04730b6daac1b86/images/page/services/functions/azure-functions-screenshot.png')
-            ])
-            .buttons([
-                builder.CardAction.openUrl(session, 'https://azure.microsoft.com/en-us/services/functions/', 'Learn More')
-            ])
-    );
+		var msg ="{'facebook': { 'attachment': { 'type': 'template','payload': { 'template_type': 'generic','elements': [{'title': 'Shark Tank','subtitle': 'Shark Tank','image_url': 'http://image.vam.synacor.com.edgesuite.net/0f/07/0f07592094a2a596d2f6646271e9cb0311508415/w=414,h=303,crop=auto/?sig=88c390c980d4fa53d37ef16fbdc53ec3dfbad7d9fa626949827b76ae37140ac3&amp;app=powerplay','buttons': [    {'type': 'web_url','url': 'http://www.youtube.com/embed/SQ1W7RsXL3k','title': 'Watch video'    },    {'type': 'web_url','url': 'https://m.verizon.com/myverizonmobile/router.aspx?token=tvlisting','title': 'Record'    }]    },    {'title': 'Game of Thrones','subtitle': 'Game of Thrones','image_url': 'http://ia.media-imdb.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_UX182_CR0,0,182,268_AL_.jpg','buttons': [    {'type': 'web_url','url': 'https://www.youtube.com/watch?v=36q5NnL3uSM','title': 'Watch video'    },    {'type': 'web_url','url': 'https://m.verizon.com/myverizonmobile/router.aspx?token=tvlisting','title': 'Record'    }]    },    {'title': 'The Night Of','subtitle': 'The Night Of','image_url': 'http://ia.media-imdb.com/images/M/MV5BMjQyOTgxMDI0Nl5BMl5BanBnXkFtZTgwOTE4MzczOTE@._V1_UX182_CR0,0,182,268_AL_.jpg','buttons': [    {'type': 'web_url','url': 'https://www.youtube.com/watch?v=36q5NnL3uSM','title': 'Watch video'    },    {'type': 'web_url','url': 'https://m.verizon.com/myverizonmobile/router.aspx?token=tvlisting','title': 'Record'}]}]}}}}";
+                session.endDialog(msg);
 		
 		
 	}
