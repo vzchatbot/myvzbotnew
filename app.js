@@ -220,17 +220,13 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		   var msg = new builder.Message(session)
             .attachments([
                 new builder.ReceiptCard(session)
-                    .title("Recipient's Name")
+                    .title("Whats On HBO")
                     .items([
-                        builder.ReceiptItem.create(session, "$22.00", "EMP Museum").image(builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/a/a0/Night_Exterior_EMP.jpg")),
-                        builder.ReceiptItem.create(session, "$22.00", "Space Needle").image(builder.CardImage.create(session, "https://upload.wikimedia.org/wikipedia/commons/7/7c/Seattlenighttimequeenanne.jpg"))
+                        builder.ReceiptItem.create(session, "#899 - HBO HD", "#899 - HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg")),
+				builder.ReceiptItem.create(session, "#899 - HBO HD", "#899 - HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg")),
+				builder.ReceiptItem.create(session, "#899 - HBO HD", "#899 - HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg"))
                     ])
-                    .facts([
-                        builder.Fact.create(session, "1234567898", "Order Number"),
-                        builder.Fact.create(session, "VISA 4076", "Payment Method")
-                    ])
-                    .tax("$4.40")
-                    .total("$48.40")
+                    
             ]);
                 session.endDialog(msg);
 		
