@@ -285,10 +285,10 @@ function getCardsAttachments(session) {
             .images([
 			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5493_1.jpg')
 		])
-            .buttons( { [
+            .buttons(  [
  builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO', 'Tune In')
 	]
-}),
+),
 			
 
 		new builder.HeroCard(session)
