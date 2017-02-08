@@ -275,10 +275,12 @@ function getCardsAttachments(session) {
 			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5714_1.jpg')
 		])
             .buttons([
-			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In'),
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'See Whats on')
+
 		]),
 
-		new builder.ThumbnailCard(session)
+		new builder.HeroCard(session)
             .title('HBO')
             .subtitle('#400L')
             .text('')
@@ -286,7 +288,8 @@ function getCardsAttachments(session) {
 			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5493_1.jpg')
 		])
             .buttons(  [
- builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO', 'Tune In')
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO', 'Tune In'),
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'See Whats on')
 	]
 ),
 			
@@ -299,10 +302,11 @@ function getCardsAttachments(session) {
 			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5714_1.jpg')
 		])
             .buttons([
-			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In'),
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'See Whats on')
 		]),
 
-		new builder.ThumbnailCard(session)
+		new builder.HeroCard(session)
             .title('HBO')
             .subtitle('#400L')
             .text('')
@@ -310,7 +314,52 @@ function getCardsAttachments(session) {
 			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5493_1.jpg')
 		])
             .buttons([
-			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO', 'Tune In')
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO', 'Tune In'),
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'See Whats on')
+		])
+	];
+}
+function getCardsAttachments_1(session) {
+	return [
+		new builder.HeroCard(session)
+            .title('HBO HD')
+            .subtitle('#899')
+            .text('')
+            .images([
+			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5714_1.jpg')
+		])
+            .buttons([
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
+		]),
+		new builder.HeroCard(session)
+            .title('HBO HD')
+            .subtitle('#899')
+            .text('')
+            .images([
+			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5714_1.jpg')
+		])
+            .buttons([
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
+		]),
+		new builder.HeroCard(session)
+            .title('HBO HD')
+            .subtitle('#899')
+            .text('')
+            .images([
+			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5714_1.jpg')
+		])
+            .buttons([
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
+		]),
+		new builder.HeroCard(session)
+            .title('HBO HD')
+            .subtitle('#899')
+            .text('')
+            .images([
+			builder.CardImage.create(session, 'http://www.verizon.com/resources/clu/cluimages/5714_1.jpg')
+		])
+            .buttons([
+			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
 		])
 	];
 }
