@@ -218,32 +218,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj));
 		
-                session.endDialog(getCardsAttachments(session));
-		
-		
-	}
-    catch (experr) {
-		logger.debug('error on  station search detail : ' + experr);
-	}
-	
-	logger.debug("station search completed");
-}
-
-
-function showOutageticketsCallback(apiresp,session) 
-{	
-    console.log('Inside showOutageCallback');
-    var objToJson = {};
-    objToJson = apiresp;
-    var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
-    console.log("showOutagetickets=" + JSON.stringify(subflow));
-	session.send(subflow.facebook.text); 
-}
-function printChatHistory(userCoversationArr) {
-	
-}
-function getCardsAttachments(session) {
-    return [
+                session.endDialog(
         new builder.HeroCard(session)
             .title('Azure Storage')
             .subtitle('Massively scalable cloud storage for your applications')
@@ -287,5 +262,28 @@ function getCardsAttachments(session) {
             .buttons([
                 builder.CardAction.openUrl(session, 'https://azure.microsoft.com/en-us/services/functions/', 'Learn More')
             ])
-    ];
+    );
+		
+		
+	}
+    catch (experr) {
+		logger.debug('error on  station search detail : ' + experr);
+	}
+	
+	logger.debug("station search completed");
 }
+
+
+function showOutageticketsCallback(apiresp,session) 
+{	
+    console.log('Inside showOutageCallback');
+    var objToJson = {};
+    objToJson = apiresp;
+    var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
+    console.log("showOutagetickets=" + JSON.stringify(subflow));
+	session.send(subflow.facebook.text); 
+}
+function printChatHistory(userCoversationArr) {
+	
+}
+
