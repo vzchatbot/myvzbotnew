@@ -217,20 +217,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj));
-		var msg = new builder.Message(session)
-            .sourceEvent({
-                facebook: {
-                    attachment: {
-                        type: "template",
-                        payload: {
-                            template_type: "receipt",
-                            recipient_name: "Stephane Crozatier",
-                            order_number: "12345678902",
-                            currency: "USD",
-                            payment_method: "Visa 2345",        
-                            order_url: "http://petersapparel.parseapp.com/order?order_id=123456",
-                            timestamp: "1428444852", 
-   var msg = new builder.Message(session)
+		   var msg = new builder.Message(session)
             .attachments([
                 new builder.ReceiptCard(session)
                     .title("Recipient's Name")
