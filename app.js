@@ -217,7 +217,34 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj));
-		var msg = new builder.HeroCard(session)
+		
+                session.endDialog(getCardsAttachments(session));
+		
+		
+	}
+    catch (experr) {
+		logger.debug('error on  station search detail : ' + experr);
+	}
+	
+	logger.debug("station search completed");
+}
+
+
+function showOutageticketsCallback(apiresp,session) 
+{	
+    console.log('Inside showOutageCallback');
+    var objToJson = {};
+    objToJson = apiresp;
+    var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
+    console.log("showOutagetickets=" + JSON.stringify(subflow));
+	session.send(subflow.facebook.text); 
+}
+function printChatHistory(userCoversationArr) {
+	
+}
+function getCardsAttachments(session) {
+    return [
+        new builder.HeroCard(session)
             .title('Azure Storage')
             .subtitle('Massively scalable cloud storage for your applications')
             .text('Store and help protect your data. Get durable, highly available data storage across the globe and pay only for what you use.')
@@ -259,30 +286,6 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
             ])
             .buttons([
                 builder.CardAction.openUrl(session, 'https://azure.microsoft.com/en-us/services/functions/', 'Learn More')
-            ]);
-		
-		
-        session.endDialog(msg);
-		
-		
-	}
-    catch (experr) {
-		logger.debug('error on  station search detail : ' + experr);
-	}
-	
-	logger.debug("station search completed");
-}
-
-
-function showOutageticketsCallback(apiresp,session) 
-{	
-    console.log('Inside showOutageCallback');
-    var objToJson = {};
-    objToJson = apiresp;
-    var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response; 
-    console.log("showOutagetickets=" + JSON.stringify(subflow));
-	session.send(subflow.facebook.text); 
-}
-function printChatHistory(userCoversationArr) {
-	
+            ])
+    ];
 }
