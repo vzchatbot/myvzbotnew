@@ -222,9 +222,11 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
                 new builder.ReceiptCard(session)
                     .title("Whats On HBO")
                     .items([
-                        builder.ReceiptItem.create(session, "#899 - HBO HD", "#899 - HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg")),
-				builder.ReceiptItem.create(session, "#899 - HBO HD", "#899 - HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg")),
-				builder.ReceiptItem.create(session, "#899 - HBO HD", "#899 - HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg"))
+                        builder.ReceiptItem.create(session, "#899", "HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg")),
+				builder.ReceiptItem.create(session, "#400", "HBO").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5493_1.jpg")),
+				builder.ReceiptItem.create(session, "#902", "HBO 2 HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5716_1.jpg")),
+				builder.ReceiptItem.create(session, "#402", "HBO 2").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5495_1.jpg"))
+				builder.ReceiptItem.create(session, "#403", " HBO 2 West").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5496_1.jpg"))
                     ])
                     
             ]);
