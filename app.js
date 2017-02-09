@@ -9,7 +9,7 @@ var JSONbig = require('json-bigint');
 var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
-//var util = require('util');
+var util = require('util');
 
 var config = require('./config/devconfig.json');
 
@@ -226,7 +226,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
         .attachments(cards);
 
 		
-		console.log('JSON.stringify(JSON.parse(reply)):', JSONbig.stringify(reply));
+		console.log("UTIL:"+ util.inspect(reply));
 
 		session.send(reply);
 
