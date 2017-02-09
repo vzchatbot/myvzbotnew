@@ -295,8 +295,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
-        .attachments({
-			"contentType": "application/vnd.microsoft.card.hero",
+        .attachments({			
 			"content": {
 				"title": "Sushi",
 				"subtitle": "Very fresh shrimp or tuna.",
