@@ -225,7 +225,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
 
-		logger.debug(JSON.stringify(reply));
+		//logger.debug(JSON.stringify(reply));
 
 		session.send(reply);
 
