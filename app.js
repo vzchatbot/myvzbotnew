@@ -314,27 +314,6 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 							value: "https://en.wikipedia.org/wiki/Pig_Latin"
 						}
 					]
-				},
-				{
- contentType: "application/vnd.microsoft.card.hero",
-				content: {
-					title: "I'm a hero card",
-					subtitle: "Pig Latin Wikipedia Page",
-					images: [
-						{
-							url: "https://<ImageUrl1>"
-						},
-						{
-							url: "https://<ImageUrl2>"
-						}
-					],
-					buttons: [
-						{
-							type: "openUrl",
-							title: "WikiPedia Page",
-							value: "https://en.wikipedia.org/wiki/Pig_Latin"
-						}
-					]
 				}
 			}]);
 		session.endDialog(msg);
