@@ -218,27 +218,57 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj.facebook));
 		
-		
-		var msg1 = new builder.Message(session)
+		try {
+			var msg1 = new builder.Message(session)
 		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments([respobj.facebook]);
-		session.endDialog(msg1);
-		
-		var msg2 = new builder.Message(session)
+			session.endDialog(msg1);
+		}
+    catch (experr) {
+			
+		}
+
+		try {
+			var msg2 = new builder.Message(session)
 		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments([respobj.facebook.attachment]);
-		session.endDialog(msg2);
-		
+			session.endDialog(msg2);
+		}
+    catch (experr) {
+			
+		}
 
-		var msg3 = new builder.Message(session)
+		try {
+			var msg3 = new builder.Message(session)
 		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments(respobj.facebook.attachment);
-		session.endDialog(msg3);
-		
-		var msg4 = new builder.Message(session)
+			session.endDialog(msg3);
+
+		}
+    catch (experr) {
+			
+		}
+
+		try {
+
+			
+			var msg4 = new builder.Message(session)
 		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments(respobj.facebook);
-		session.endDialog(msg4);
+			session.endDialog(msg4);
+
+		}
+    catch (experr) {
+			
+		}
+
+		
+		
+		
+		
+
+	
+	
 
 		//WORKING
 		var cards = getCardsAttachments();
