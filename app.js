@@ -218,56 +218,6 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj.facebook));
 		
-		try {
-			var msg1 = new builder.Message(session)
-		 .attachmentLayout(builder.AttachmentLayout.carousel)
-            .attachments([respobj.facebook]);
-			session.endDialog(msg1);
-		}
-    catch (experr) {
-			
-		}
-
-		try {
-			var msg2 = new builder.Message(session)
-		 .attachmentLayout(builder.AttachmentLayout.carousel)
-            .attachments([respobj.facebook.attachment]);
-			session.endDialog(msg2);
-		}
-    catch (experr) {
-			
-		}
-
-		try {
-			var msg3 = new builder.Message(session)
-		 .attachmentLayout(builder.AttachmentLayout.carousel)
-            .attachments(respobj.facebook.attachment);
-			session.endDialog(msg3);
-
-		}
-    catch (experr) {
-			
-		}
-
-		try {
-
-			
-			var msg4 = new builder.Message(session)
-		 .attachmentLayout(builder.AttachmentLayout.carousel)
-            .attachments(respobj.facebook);
-			session.endDialog(msg4);
-
-		}
-    catch (experr) {
-			
-		}
-
-		
-		
-		
-		
-
-	
 	
 
 		//WORKING
@@ -283,68 +233,15 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		//session.send(reply);
 		//WORKING
 
-		var msg = new builder.Message(session)
-            .sourceEvent({
-			
-				attachment: {
-					type: "template",
-					payload: {
-						template_type: "receipt",
-						recipient_name: "Stephane Crozatier",
-						order_number: "12345678902",
-						currency: "USD",
-						payment_method: "Visa 2345",        
-						order_url: "http://petersapparel.parseapp.com/order?order_id=123456",
-						timestamp: "1428444852", 
-						elements: [
-							{
-								title: "Classic White T-Shirt",
-								subtitle: "100% Soft and Luxurious Cotton",
-								quantity: 2,
-								price: 50,
-								currency: "USD",
-								image_url: "http://petersapparel.parseapp.com/img/whiteshirt.png"
-							},
-							{
-								title: "Classic Gray T-Shirt",
-								subtitle: "100% Soft and Luxurious Cotton",
-								quantity: 1,
-								price: 25,
-								currency: "USD",
-								image_url: "http://petersapparel.parseapp.com/img/grayshirt.png"
-							}
-						],
-						address: {
-							street_1: "1 Hacker Way",
-							street_2: "",
-							city: "Menlo Park",
-							postal_code: "94025",
-							state: "CA",
-							country: "US"
-						},
-						summary: {
-							subtotal: 75.00,
-							shipping_cost: 4.95,
-							total_tax: 6.19,
-							total_cost: 56.14
-						},
-						adjustments: [
-							{ name: "New Customer Discount", amount: 20 },
-							{ name: "$10 Off Coupon", amount: 10 }
-						]
-					}
-				}
-			
-		});
-		//session.endDialog(msg);
-
+		// WORKING CODE
 		var msg = new builder.Message(session)
             .attachments([{
 				contentType: "image/jpeg",
 				contentUrl: "http://www.theoldrobots.com/images62/Bender-18.JPG"
 			}]);
 		//session.endDialog(msg);
-		
+		// WORKING CODE
+
 		// WORKING CODE
 		var msg = new builder.Message(session)
             .attachments([{
@@ -470,24 +367,95 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		]);
 		//session.endDialog(msg);
 
-		//session.endDialog(reply);
-
-		/*
-		   var msg = new builder.Message(session)
+		var msg = new builder.Message(session)
+		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments([
-                new builder.ReceiptCard(session)
-                    .title("Whats On HBO")
-                    .items([
-                        builder.ReceiptItem.create(session, "#899", "HBO HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5714_1.jpg")),
-				builder.ReceiptItem.create(session, "#400", "HBO").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5493_1.jpg")),
-				builder.ReceiptItem.create(session, "#902", "HBO 2 HD").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5716_1.jpg")),
-				builder.ReceiptItem.create(session, "#402", "HBO 2").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5495_1.jpg")),
-				builder.ReceiptItem.create(session, "#403", " HBO 2 West").image(builder.CardImage.create(session, "http://www.verizon.com/resources/clu/cluimages/5496_1.jpg"))
-                    ])
-                    
-            ]);
-                session.endDialog(msg);
-		*/
+			{
+				
+					title: "Sushi",
+					subtitle: "Very fresh shrimp or tuna.",
+					images: [
+						{
+							url: "https://mydeploy.azurewebsites.net/sushi.png"
+						}
+					],
+					buttons: [
+						{
+							type: "imBack",
+							title: "1 piece",
+							value: "sushi,1"
+						},
+						{
+							type: "imBack",
+							title: "2 piece",
+							value: "sushi,2"
+						},
+						{
+							type: "imBack",
+							title: "more",
+							value: "sushi,3+"
+						}
+					]
+				
+			},
+			{
+				
+					title: "Tenpura",
+					subtitle: "Japanese first-class vegitables.",
+					images: [
+						{
+							url: "https://mydeploy.azurewebsites.net/tenpura.jpg"
+						}
+					],
+					buttons: [
+						{
+							type: "imBack",
+							title: "1 piece",
+							value: "tenpura,1"
+						},
+						{
+							type: "imBack",
+							title: "2 piece",
+							value: "tenpura,2"
+						},
+						{
+							type: "imBack",
+							title: "more",
+							value: "tenpura,3+"
+						}
+					]
+				
+			},
+			{
+				
+					title: "Tofu",
+					subtitle: "Super healthy food condensed by soy milk.",
+					images: [
+						{
+							url: "https://mydeploy.azurewebsites.net/tofu.jpg"
+						}
+					],
+					buttons: [
+						{
+							type: "imBack",
+							title: "1 piece",
+							value: "tofu,1"
+						},
+						{
+							type: "imBack",
+							title: "2 piece",
+							value: "tofu,2"
+						},
+						{
+							type: "imBack",
+							title: "more",
+							value: "tofu,3+"
+						}
+					]
+				}
+			
+		]);
+		session.endDialog(msg);
 		
 	}
     catch (experr) {
