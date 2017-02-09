@@ -217,7 +217,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		logger.debug("Station Search Response " + JSON.stringify(respobj));
-		
+		//WORKING
 		var cards = getCardsAttachments();
 		
 		// create reply with Carousel AttachmentLayout
@@ -228,6 +228,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		
 		//console.log("UTIL:"+ util.inspect(reply));
 		//session.send(reply);
+		//WORKING
 
 		var msg = new builder.Message(session)
             .sourceEvent({
@@ -291,7 +292,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 			}]);
 		//session.endDialog(msg);
 		
-		
+		// WORKING CODE
 		var msg = new builder.Message(session)
             .attachments([{
 				contentType: "application/vnd.microsoft.card.hero",
@@ -315,101 +316,103 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 					]
 				}
 			}]);
-		session.endDialog(msg);
-
+		//session.endDialog(msg);
+		 //WORKING CODE
 		var msg = new builder.Message(session)
             .attachments({ "type": "template", "payload": { "template_type": "generic", "elements": [{ "title": "Family Guy", "subtitle": "WBIN : Comedy", "image_url": "http://image.vam.synacor.com.edgesuite.net/8d/53/8d532ad0e94c271f8fb153a86141de2c92ee15b0/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Family Guy Channel: WBIN" }] }, { "title": "NCIS", "subtitle": "USA : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/85/ed/85ed791472df3065ae5462d42560773a649fdfaf/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: NCIS Channel: USA" }] }, { "title": "Shark Tank", "subtitle": "CNBC : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/0f/07/0f07592094a2a596d2f6646271e9cb0311508415/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Shark Tank Channel: CNBC" }] }, { "title": "Notorious", "subtitle": "ABC WCVB : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/ba/51/ba51ba91eafe2da2a01791589bca98c0044b6622/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Notorious Channel: ABC WCVB" }] }, { "title": "Chicago Med", "subtitle": "NBC WHDH : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/e1/93/e1933b6aee82a467980415c36dced6fddf64d80a/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Chicago Med Channel: NBC WHDH" }] }, { "title": "Modern Family", "subtitle": "CW WLVI : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/c1/58/c1586d0e69ca53c32ae64526da7793b8ec962678/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Modern Family Channel: CW WLVI" }] }] } });
 		//session.endDialog(msg);
 
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
-        .attachments({			
-			"content": {
-				"title": "Sushi",
-				"subtitle": "Very fresh shrimp or tuna.",
-				"images": [
+        .attachments({
+			contentType: "application/vnd.microsoft.card.hero",		
+			content: {
+				title: "Sushi",
+				subtitle: "Very fresh shrimp or tuna.",
+				images: [
 					{
-						"url": "https://mydeploy.azurewebsites.net/sushi.png"
+						url: "https://mydeploy.azurewebsites.net/sushi.png"
 					}
 				],
-				"buttons": [
+				buttons: [
 					{
-						"type": "imBack",
-						"title": "1 piece",
-						"value": "sushi,1"
+						type: "imBack",
+						title: "1 piece",
+						value: "sushi,1"
 					},
 					{
-						"type": "imBack",
-						"title": "2 piece",
-						"value": "sushi,2"
+						type: "imBack",
+						title: "2 piece",
+						value: "sushi,2"
 					},
 					{
-						"type": "imBack",
-						"title": "more",
-						"value": "sushi,3+"
+						type: "imBack",
+						title: "more",
+						value: "sushi,3+"
 					}
 				]
 			}
 		},
     {
-			"contentType": "application/vnd.microsoft.card.hero",
-			"content": {
-				"title": "Tenpura",
-				"subtitle": "Japanese first-class vegitables.",
-				"images": [
+			contentType: "application/vnd.microsoft.card.hero",
+			content: {
+				title: "Tenpura",
+				subtitle: "Japanese first-class vegitables.",
+				images: [
 					{
-						"url": "https://mydeploy.azurewebsites.net/tenpura.jpg"
+						url: "https://mydeploy.azurewebsites.net/tenpura.jpg"
 					}
 				],
-				"buttons": [
+				buttons: [
 					{
-						"type": "imBack",
-						"title": "1 piece",
-						"value": "tenpura,1"
+						type: "imBack",
+						title: "1 piece",
+						value: "tenpura,1"
 					},
 					{
-						"type": "imBack",
-						"title": "2 piece",
-						"value": "tenpura,2"
+						type: "imBack",
+						title: "2 piece",
+						value: "tenpura,2"
 					},
 					{
-						"type": "imBack",
-						"title": "more",
-						"value": "tenpura,3+"
+						type: "imBack",
+						title: "more",
+						value: "tenpura,3+"
 					}
 				]
 			}
 		},
     {
-			"contentType": "application/vnd.microsoft.card.hero",
-			"content": {
-				"title": "Tofu",
-				"subtitle": "Super healthy food condensed by soy milk.",
-				"images": [
+			contentType: "application/vnd.microsoft.card.hero",
+			content: {
+				title: "Tofu",
+				subtitle: "Super healthy food condensed by soy milk.",
+				images: [
 					{
-						"url": "https://mydeploy.azurewebsites.net/tofu.jpg"
+						url: "https://mydeploy.azurewebsites.net/tofu.jpg"
 					}
 				],
-				"buttons": [
+				buttons: [
 					{
-						"type": "imBack",
-						"title": "1 piece",
-						"value": "tofu,1"
+						type: "imBack",
+						title: "1 piece",
+						value: "tofu,1"
 					},
 					{
-						"type": "imBack",
-						"title": "2 piece",
-						"value": "tofu,2"
+						type: "imBack",
+						title: "2 piece",
+						value: "tofu,2"
 					},
 					{
-						"type": "imBack",
-						"title": "more",
-						"value": "tofu,3+"
+						type: "imBack",
+						title: "more",
+						value: "tofu,3+"
 					}
 				]
 			}
 		});
-		//session.endDialog(msg);
+		session.endDialog(reply);
+
 		/*
 		   var msg = new builder.Message(session)
             .attachments([
