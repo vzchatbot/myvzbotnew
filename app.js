@@ -216,7 +216,30 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		printChatHistory(userCoversationArr);
 		
 		var respobj = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
-		logger.debug("Station Search Response " + JSON.stringify(respobj));
+		logger.debug("Station Search Response " + JSON.stringify(respobj.facebook));
+		
+		
+		var msg1 = new builder.Message(session)
+		 .attachmentLayout(builder.AttachmentLayout.carousel)
+            .attachments([respobj.facebook]);
+		session.endDialog(msg1);
+		
+		var msg2 = new builder.Message(session)
+		 .attachmentLayout(builder.AttachmentLayout.carousel)
+            .attachments([respobj.facebook.attachment]);
+		session.endDialog(msg2);
+		
+
+		var msg3 = new builder.Message(session)
+		 .attachmentLayout(builder.AttachmentLayout.carousel)
+            .attachments(respobj.facebook.attachment);
+		session.endDialog(msg3);
+		
+		var msg4 = new builder.Message(session)
+		 .attachmentLayout(builder.AttachmentLayout.carousel)
+            .attachments(respobj.facebook);
+		session.endDialog(msg4);
+
 		//WORKING
 		var cards = getCardsAttachments();
 		
@@ -415,7 +438,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			}
 		]);
-		session.endDialog(msg);
+		//session.endDialog(msg);
 
 		//session.endDialog(reply);
 
