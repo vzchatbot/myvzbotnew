@@ -229,7 +229,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 
 		var msg = new builder.Message(session)
             .sourceEvent({
-			facebook: {
+			
 				attachment: {
 					type: "template",
 					payload: {
@@ -278,9 +278,17 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 						]
 					}
 				}
-			}
+			
 		});
+		//session.endDialog(msg);
+
+		var msg = new builder.Message(session)
+            .attachments([{
+				contentType: "image/jpeg",
+				contentUrl: "http://www.theoldrobots.com/images62/Bender-18.JPG"
+			}]);
 		session.endDialog(msg);
+
 		/*
 		   var msg = new builder.Message(session)
             .attachments([
