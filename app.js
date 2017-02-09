@@ -226,9 +226,8 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
         .attachments(cards);
 
 		
-		console.log("UTIL:"+ util.inspect(reply));
-
-		session.send(reply);
+		//console.log("UTIL:"+ util.inspect(reply));
+		//session.send(reply);
 
 		var msg = new builder.Message(session)
             .sourceEvent({
@@ -291,6 +290,32 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				contentUrl: "http://www.theoldrobots.com/images62/Bender-18.JPG"
 			}]);
 		//session.endDialog(msg);
+		
+		
+		var msg = new builder.Message(session)
+            .attachments([{
+				contentType: "application/vnd.microsoft.card.hero",
+				content: {
+					title: "I'm a hero card",
+					subtitle: "Pig Latin Wikipedia Page",
+					images: [
+						{
+							url: "https://<ImageUrl1>"
+						},
+						{
+							url: "https://<ImageUrl2>"
+						}
+					],
+					buttons: [
+						{
+							type: "openUrl",
+							title: "WikiPedia Page",
+							value: "https://en.wikipedia.org/wiki/Pig_Latin"
+						}
+					]
+				}
+			}]);
+		session.endDialog(msg);
 
 		var msg = new builder.Message(session)
             .attachments({ "type": "template", "payload": { "template_type": "generic", "elements": [{ "title": "Family Guy", "subtitle": "WBIN : Comedy", "image_url": "http://image.vam.synacor.com.edgesuite.net/8d/53/8d532ad0e94c271f8fb153a86141de2c92ee15b0/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Family Guy Channel: WBIN" }] }, { "title": "NCIS", "subtitle": "USA : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/85/ed/85ed791472df3065ae5462d42560773a649fdfaf/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: NCIS Channel: USA" }] }, { "title": "Shark Tank", "subtitle": "CNBC : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/0f/07/0f07592094a2a596d2f6646271e9cb0311508415/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Shark Tank Channel: CNBC" }] }, { "title": "Notorious", "subtitle": "ABC WCVB : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/ba/51/ba51ba91eafe2da2a01791589bca98c0044b6622/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Notorious Channel: ABC WCVB" }] }, { "title": "Chicago Med", "subtitle": "NBC WHDH : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/e1/93/e1933b6aee82a467980415c36dced6fddf64d80a/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Chicago Med Channel: NBC WHDH" }] }, { "title": "Modern Family", "subtitle": "CW WLVI : Action &amp; Adventure,Drama", "image_url": "http://image.vam.synacor.com.edgesuite.net/c1/58/c1586d0e69ca53c32ae64526da7793b8ec962678/w=207,h=151,crop=auto/?sig=0cdc5e32bc854a2e2d767ab10d96385797b360a24c9f845ead33b1ea3d79aa01&app=powerplay", "buttons": [{ "type": "web_url", "url": "http://www.verizon.com/msvsearch/whatshotimage/thumbnails/default.jpg", "title": "Watch Video" }, { "type": "postback", "title": "RecordNow", "payload": "Get Program info of Program: Modern Family Channel: CW WLVI" }] }] } });
