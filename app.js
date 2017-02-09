@@ -224,8 +224,10 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
-		
-		//session.send(reply);
+
+		logger.debug(JSON.stringify(reply));
+
+		session.send(reply);
 
 		var msg = new builder.Message(session)
             .sourceEvent({
@@ -381,7 +383,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				]
 			}
 		});
-		session.endDialog(msg);
+		//session.endDialog(msg);
 		/*
 		   var msg = new builder.Message(session)
             .attachments([
