@@ -230,7 +230,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 
 		
 		//console.log("UTIL:"+ util.inspect(reply));
-		//session.send(reply);
+		session.send(reply);
 		//WORKING
 
 		// WORKING CODE
@@ -362,7 +362,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			}
 		]);
-		session.endDialog(msg);
+		//session.endDialog(msg);
 		
 	}
     catch (experr) {
