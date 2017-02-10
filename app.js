@@ -227,47 +227,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
-
-		
-		//console.log("UTIL:"+ util.inspect(reply));
-		session.send(reply);
-		//WORKING
-
-		// WORKING CODE
-		var msg = new builder.Message(session)
-            .attachments([{
-				contentType: "image/jpeg",
-				contentUrl: "http://www.theoldrobots.com/images62/Bender-18.JPG"
-			}]);
-		//session.endDialog(msg);
-		// WORKING CODE
-
-		// WORKING CODE
-		var msg = new builder.Message(session)
-            .attachments([{
-				contentType: "application/vnd.microsoft.card.hero",
-				content: {
-					title: "I'm a hero card",
-					subtitle: "Pig Latin Wikipedia Page",
-					images: [
-						{
-							url: "https://<ImageUrl1>"
-						},
-						{
-							url: "https://<ImageUrl2>"
-						}
-					],
-					buttons: [
-						{
-							type: "openUrl",
-							title: "WikiPedia Page",
-							value: "https://en.wikipedia.org/wiki/Pig_Latin"
-						}
-					]
-				}
-			}]);
-		//session.endDialog(msg);
-		 //WORKING CODE
+		//session.endDialog(reply);
 		
 		
 		// WORKING CODE
@@ -275,7 +235,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments([
 			{
-				contentType: "application/vnd.microsoft.card.hero",
+				
 				content: {
 					title: "Sushi",
 					subtitle: "Very fresh shrimp or tuna.",
@@ -304,7 +264,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			},
 			{
-				contentType: "application/vnd.microsoft.card.hero",
+				
 				content: {
 					title: "Tenpura",
 					subtitle: "Japanese first-class vegitables.",
@@ -333,7 +293,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			},
 			{
-				contentType: "application/vnd.microsoft.card.hero",
+				
 				content: {
 					title: "Tofu",
 					subtitle: "Super healthy food condensed by soy milk.",
@@ -362,7 +322,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			}
 		]);
-		//session.endDialog(msg);
+		session.endDialog(msg);
 		
 	}
     catch (experr) {
