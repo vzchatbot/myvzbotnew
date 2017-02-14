@@ -368,7 +368,7 @@ function showBillInfo(apireq, sender, callback) {
 				Request:
  {
 					ThisValue: 'BillInfo',
-					BotProviderId: '1320056164681772'
+					BotProviderId: '945495155552625'
 				}
 			}
 		};
