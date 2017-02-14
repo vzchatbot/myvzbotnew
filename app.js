@@ -227,7 +227,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
-		session.endDialog(msg);
+		session.endDialog(reply);
 		
 	}
     catch (experr) {
