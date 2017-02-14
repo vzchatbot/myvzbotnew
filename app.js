@@ -221,108 +221,13 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 	
 
 		//WORKING
-		var cards = getCardsAttachments();
+		var cards = getCardsAttachments_1();
 		
 		// create reply with Carousel AttachmentLayout
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
 		session.endDialog(msg);
-		
-		
-		// WORKING CODE
-		var msg = new builder.Message(session)
-		 .attachmentLayout(builder.AttachmentLayout.carousel)
-            .attachments([
-			{
-				contentType: "application/vnd.microsoft.card.hero",
-				content: {
-					title: "Sushi",
-					subtitle: "Very fresh shrimp or tuna.",
-					images: [
-						{
-							url: "https://mydeploy.azurewebsites.net/sushi.png"
-						}
-					],
-					buttons: [
-						{
-							type: "imBack",
-							title: "1 piece",
-							value: "sushi,1"
-						},
-						{
-							type: "imBack",
-							title: "2 piece",
-							value: "sushi,2"
-						},
-						{
-							type: "imBack",
-							title: "more",
-							value: "sushi,3+"
-						}
-					]
-				}
-			},
-			{
-				contentType: "application/vnd.microsoft.card.thumbnail",
-				content: {
-					title: "Tenpura",
-					subtitle: "Japanese first-class vegitables.",
-					images: [
-						{
-							url: "https://mydeploy.azurewebsites.net/tenpura.jpg"
-						}
-					],
-					buttons: [
-						{
-							type: "imBack",
-							title: "1 piece",
-							value: "tenpura,1"
-						},
-						{
-							type: "imBack",
-							title: "2 piece",
-							value: "tenpura,2"
-						},
-						{
-							type: "imBack",
-							title: "more",
-							value: "tenpura,3+"
-						}
-					]
-				}
-			},
-			{
-				contentType: "application/vnd.microsoft.card.thumbnail",
-				content: {
-					title: "Tofu",
-					subtitle: "Super healthy food condensed by soy milk.",
-					images: [
-						{
-							url: "https://mydeploy.azurewebsites.net/tofu.jpg"
-						}
-					],
-					buttons: [
-						{
-							type: "imBack",
-							title: "1 piece",
-							value: "tofu,1"
-						},
-						{
-							type: "imBack",
-							title: "2 piece",
-							value: "tofu,2"
-						},
-						{
-							type: "imBack",
-							title: "more",
-							value: "tofu,3+"
-						}
-					]
-				}
-			}
-		]);
-		//session.endDialog(msg);
 		
 	}
     catch (experr) {
