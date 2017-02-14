@@ -142,7 +142,14 @@ bot.dialog('/', function (session) {
 				logger.debug("----->>>>>>>>>>>> INSIDE channelsearch <<<<<<<<<<<------");
 				//userCoversationArr.ufdreqdatetime = getDateTime();
 				stationsearch(response, userCoversationArr, function (str) { stationsearchCallback(str, sender, userCoversationArr,session) });
-				break;								 
+				break;
+			case "billing":
+			case "Billing":
+				
+					showBillInfo(response, session, function (str) { showBillInfoCallback(str, session) });
+
+				break;
+										 
 		}
                     
 	});
@@ -350,4 +357,73 @@ function getCardsAttachments_1(session) {
 			builder.CardAction.openUrl(session, 'https://www98.verizon.com/vzbot/vzbotproxy/deeplink?IsLive=true&CallSign=HBO HD', 'Tune In')
 		])
 	];
+}
+function showBillInfo(apireq, sender, callback) {
+	console.log("showBillInfo Called");
+	try {
+		
+		var args = {
+			json: {
+				Flow: config.FlowName,
+				Request:
+ {
+					ThisValue: 'BillInfo',
+					BotProviderId: '945495155552625'
+				}
+			}
+		};
+		console.log(" Request for showBillInfo json " + JSON.stringify(args));
+		
+		request.post({
+			url: 'https://www.verizon.com/fiostv/myservices/admin/botapinew.ashx',
+			proxy: '',
+			headers: headersInfo,
+			method: 'POST',
+			json: args.json
+		},
+            function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				callback(body);
+			}
+			else
+				console.log(' error on callback for showBillInfo : ' + error + ' body: ' + JSON.stringify(body));
+		}
+		);
+	}
+    catch (experr) {
+		console.log('error on  showOutagetickets : ' + experr);
+	}
+	console.log("showOutagetickets completed");
+}
+
+function showBillInfoCallback(apiresp, usersession) {
+	var objToJson = {};
+	objToJson = apiresp;
+	var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
+	
+	
+	logger.debug("showBillInfoCallback=" + JSON.stringify(subflow));
+	if (subflow != null 
+        && subflow.facebook != null 
+        && subflow.facebook.text != null && subflow.facebook.text == 'UserNotFound') {
+		console.log("showBillInfo subflow " + subflow.facebook.text);
+		var respobj = {
+			"facebook": {
+				"attachment": {
+					"type": "template", "payload": {
+						"template_type": "generic", "elements": [
+							{
+								"title": "You have to Login to Verizon to proceed", "image_url": config.vzImage, "buttons": [
+									{ "type": "account_link", "url": config.AccountLink }]
+							}]
+					}
+				}
+			}
+		};
+		
+		session.send(usersession, respobj.facebook);
+	}
+	else {
+		session.send(usersession, subflow.facebook);
+	}
 }
