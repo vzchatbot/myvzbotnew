@@ -425,14 +425,14 @@ function showBillInfoCallback(apiresp, usersession) {
 				}
 			};
 			
-			session.send(usersession, respobj.facebook);
+			usersession.send(respobj.facebook);
 		}
 		else {
-			session.send(usersession, subflow.facebook);
+			usersession.send(subflow.facebook);
 		}
 		
 	} catch (e) {
-		session.send(usersession,"Sorry..Please try again");
+		usersession.send("Sorry..Please try again");
 	};
 	
 	
