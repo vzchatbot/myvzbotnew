@@ -375,7 +375,7 @@ function showBillInfo(apireq, sender, callback) {
 		console.log(" Request for showBillInfo json " + JSON.stringify(args));
 		
 		request.post({
-			url: 'https://www.verizon.com/fiostv/myservices/admin/botapinew.ashx',
+			url: 'http://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',
 			proxy: '',
 			headers: headersInfo,
 			method: 'POST',
