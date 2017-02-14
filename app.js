@@ -401,29 +401,34 @@ function showBillInfoCallback(apiresp, usersession) {
 	objToJson = apiresp;
 	logger.debug("showBillInfoCallback...");
 	logger.debug("showBillInfoCallback=" + JSON.stringify(objToJson));
-	var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 	
-	
-	logger.debug("showBillInfoCallback=" + JSON.stringify(subflow));
-	if (subflow != null 
+	try {
+		var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
+		
+		logger.debug("showBillInfoCallback=" + JSON.stringify(subflow));
+		if (subflow != null 
         && subflow.facebook != null 
         && subflow.facebook.text != null && subflow.facebook.text == 'UserNotFound') {
-		console.log("showBillInfo subflow " + subflow.facebook.text);
-		var respobj = {
-			"facebook": {
-				"attachment": {
-					"type": "template", "payload": {
-						"template_type": "generic", "elements": [
-							{
-								"title": "You have to Login to Verizon to proceed", "image_url": config.vzImage, "buttons": [
-									{ "type": "account_link", "url": config.AccountLink }]
-							}]
+			console.log("showBillInfo subflow " + subflow.facebook.text);
+			var respobj = {
+				"facebook": {
+					"attachment": {
+						"type": "template", "payload": {
+							"template_type": "generic", "elements": [
+								{
+									"title": "You have to Login to Verizon to proceed", "image_url": config.vzImage, "buttons": [
+										{ "type": "account_link", "url": config.AccountLink }]
+								}]
+						}
 					}
 				}
-			}
+			};
 		};
 		
-		session.send(usersession, respobj.facebook);
+	} catch (e) {
+		
+		session.send(usersession, "Sorry...Please try after sometime");
+
 	}
 	else {
 		session.send(usersession, subflow.facebook);
