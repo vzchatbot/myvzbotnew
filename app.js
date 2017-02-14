@@ -227,7 +227,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		var reply = new builder.Message(session)
         .attachmentLayout(builder.AttachmentLayout.carousel)
         .attachments(cards);
-		//session.endDialog(reply);
+		session.endDialog(msg);
 		
 		
 		// WORKING CODE
@@ -235,7 +235,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 		 .attachmentLayout(builder.AttachmentLayout.carousel)
             .attachments([
 			{
-				
+				contentType: "application/vnd.microsoft.card.hero",
 				content: {
 					title: "Sushi",
 					subtitle: "Very fresh shrimp or tuna.",
@@ -264,7 +264,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			},
 			{
-				
+				contentType: "application/vnd.microsoft.card.thumbnail",
 				content: {
 					title: "Tenpura",
 					subtitle: "Japanese first-class vegitables.",
@@ -293,7 +293,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			},
 			{
-				
+				contentType: "application/vnd.microsoft.card.thumbnail",
 				content: {
 					title: "Tofu",
 					subtitle: "Super healthy food condensed by soy milk.",
@@ -322,7 +322,7 @@ function stationsearchCallback(apiresp, senderid, userCoversationArr,session) {
 				}
 			}
 		]);
-		session.endDialog(msg);
+		//session.endDialog(msg);
 		
 	}
     catch (experr) {
