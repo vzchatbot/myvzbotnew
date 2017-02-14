@@ -105,7 +105,7 @@ server.get('/apipolling/', function (req, res) {
 //=========================================================
 // Bots Dialogs
 //=========================================================
-
+var headersInfo = { "Content-Type": "application/json" };
 bot.dialog('/', function (session) {
 	console.log("Entering 1st");
 	console.log("api.ai" + APIAI_ACCESS_TOKEN);
