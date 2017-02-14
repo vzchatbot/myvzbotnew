@@ -145,8 +145,17 @@ bot.dialog('/', function (session) {
 				break;
 			case "billing":
 			case "Billing":
+
+				var headersInfo = { "Content-Type": "application/json" };
+				var args = { "headers": headersInfo, "json": { Flow: 'TroubleShooting Flows\\ChatBot\\APIChatBot.xml', Request: { ThisValue: 'BillInfo', BotProviderId: '945495155552625' } } };
 				
-					showBillInfo(response, session, function (str) { showBillInfoCallback(str, session) });
+				console.log("args=" + JSON.stringify(args));
+				request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx', args,
+    		function (error, response, body) {
+					if (!error && response.statusCode == 200) {
+						showBillInfoCallback(body, session)
+					}
+				});
 
 				break;
 										 
@@ -365,8 +374,7 @@ function showBillInfo(apireq, sender, callback) {
 		var args = {
 			json: {
 				Flow: config.FlowName,
-				Request:
- {
+				Request: {
 					ThisValue: 'BillInfo',
 					BotProviderId: '945495155552625'
 				}
@@ -374,9 +382,9 @@ function showBillInfo(apireq, sender, callback) {
 		};
 		console.log(" Request for showBillInfo json " + JSON.stringify(args));
 		
+
 		request.post({
-			url: 'http://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',
-			proxy: '',
+			url: 'https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx',			
 			headers: headersInfo,
 			method: 'POST',
 			json: args.json
