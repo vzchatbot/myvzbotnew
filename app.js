@@ -399,6 +399,8 @@ function showBillInfo(apireq, sender, callback) {
 function showBillInfoCallback(apiresp, usersession) {
 	var objToJson = {};
 	objToJson = apiresp;
+	logger.debug("showBillInfoCallback...");
+	logger.debug("showBillInfoCallback=" + JSON.stringify(objToJson));
 	var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 	
 	
