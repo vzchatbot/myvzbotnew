@@ -405,6 +405,7 @@ function showBillInfoCallback(apiresp, usersession) {
 	try {
 		var subflow = objToJson[0].Inputs.newTemp.Section.Inputs.Response;
 		
+		
 		logger.debug("showBillInfoCallback=" + JSON.stringify(subflow));
 		if (subflow != null 
         && subflow.facebook != null 
@@ -423,14 +424,16 @@ function showBillInfoCallback(apiresp, usersession) {
 					}
 				}
 			};
-		};
+			
+			session.send(usersession, respobj.facebook);
+		}
+		else {
+			session.send(usersession, subflow.facebook);
+		}
 		
 	} catch (e) {
-		
-		session.send(usersession, "Sorry...Please try after sometime");
-
-	}
-	else {
-		session.send(usersession, subflow.facebook);
-	}
+		session.send(usersession,"Sorry..Please try again");
+	};
+	
+	
 }
