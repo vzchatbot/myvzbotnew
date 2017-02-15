@@ -169,7 +169,7 @@ bot.dialog('/', function (session) {
         "Section": {
           "Inputs": {
             "Response": {
-              "facebook": {                "text": "**Here are the settings for your router** :\n\n Wi-Fi Network Name (SSID): **2sc26** \n\nWi-Fi Password: **a1b2c3d4e5** \n\nSecurity Type: **WPA2** "
+              "facebook": {                "text": "**Here are the settings for your router** :\n\n Wi-Fi Network Name : **2sc26** \n\nWi-Fi Password: **a1b2c3d4e5** \n\nSecurity Type: **WPA2** "
               }
             }
           }
