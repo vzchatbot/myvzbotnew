@@ -157,12 +157,7 @@ bot.dialog('/', function (session) {
 					}
 				});
 
-				break;
-				case "wifidetails":
-				console.log("inside wifi case");
-				var body= "Response":{"facebook":{"text":"Your WIFI Details are :"}}}
-				showwifidetails(body, session)
-				break;
+				break;			
 										 
 		}
                     
@@ -173,11 +168,7 @@ bot.dialog('/', function (session) {
 	req.end();	
         
 });
-function showBillInfoCallback(apiresp, usersession) 
-{	
-	console.log("inside wifi call back");
-	usersession.send(apiresp.facebook);
-}
+
 
 function stationsearch(apireq, userCoversationArr, callback) {
 	
