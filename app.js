@@ -175,8 +175,9 @@ bot.dialog('/', function (session) {
 
 function showwifidetails(apiresp, usersession) 
 {	
-	console.log("inside wifi call back");
-	usersession.send(apiresp.facebook);
+	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
+	console.log("inside wifi call back" + JSON.stringify(subflow));
+	usersession.send(subflow.facebook);
 }
 
 function stationsearch(apireq, userCoversationArr, callback) {
