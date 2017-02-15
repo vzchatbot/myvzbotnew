@@ -165,7 +165,7 @@ bot.dialog('/', function (session) {
 				break;
 				case "Notification":
 				console.log("inside wifi case");
-				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an Outage in your area\n\n. It's expected to be resolved by - **2/12/2017 11:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area\n\n. It's expected to be resolved by - **2/12/2017 11:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showNotification(objToJson, session)
 				break;						 
 		}
