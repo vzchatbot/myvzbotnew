@@ -157,7 +157,12 @@ bot.dialog('/', function (session) {
 					}
 				});
 
-				break;			
+				break;	
+				case "wifidetails":
+				console.log("inside wifi case");
+				var body= "Response":{"facebook":{"text":"Your WIFI Details are :"}}}
+				
+				break;
 										 
 		}
                     
