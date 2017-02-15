@@ -160,27 +160,7 @@ bot.dialog('/', function (session) {
 				break;	
 				case "wifidetails":
 				console.log("inside wifi case");
-				var objToJson= [
-  {
-    "Inputs": {
-      "Caption": "APIChatBot",
-      "Description": "Step 2",
-      "newTemp": {
-        "Section": {
-          "Inputs": {
-            "Response": {
-              "facebook": {                "text": "**Here are the settings for your router** :\n\n Wi-Fi Network Name : **2sc26** \n\nWi-Fi Password: **a1b2c3d4e5** \n\nSecurity Type: **WPA2** "
-              }
-            }
-          }
-        }
-      },
-      "Flow": {
-        "DisplayName": "APIChatBot"
-      }
-    }
-  }
-];
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"**Here are the settings for your router** :\n\n Wi-Fi Network Name : **2sc26** \n\nWi-Fi Password: **a1b2c3d4e5** \n\nSecurity Type: **WPA2** "}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showwifidetails(objToJson, session)
 				break;
 										 
