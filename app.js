@@ -173,7 +173,7 @@ bot.dialog('/', function (session) {
 	req.end();        
 });
 
-function showBillInfoCallback(apiresp, usersession) 
+function showwifidetails(apiresp, usersession) 
 {	
 	console.log("inside wifi call back");
 	usersession.send(apiresp.facebook);
