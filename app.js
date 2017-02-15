@@ -110,12 +110,12 @@ bot.dialog('/', function (session) {
 	console.log("Entering 1st");
 	console.log("api.ai" + APIAI_ACCESS_TOKEN);
 	var userCoversationArr = '';
-	console.log("Session*****", + session);
+//	console.log("Session*****", + session);
 	//  console.log(" Session****** ", (session));
 	console.log("sender", (sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var req = apiAiService.textRequest(session.message.text, options);
-	console.log("Entering 2", + reqtext );
+	console.log("Entering 2" );
 	req.on('response', function (response) {
 		console.log("Entering 3");
 		var straction = response.result.action;
