@@ -160,11 +160,28 @@ bot.dialog('/', function (session) {
 				break;	
 				case "wifidetails":
 				console.log("inside wifi case");
-				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step 2","newTemp":{"Section":{"DisplayLocation":"Middle","TargetLocation":"ufdLocation0","TemplateFileName":"UFDTemplate","TemplateName":"UFDTemplate","UFDID":"44683e12-58a2-4fa4-98fc-b2f7a611ccfc","TemplateID":"UFDTemplate","Inputs":{"SessionID":"c19aabb4-bdc1-44a6-b9d6-07cc6dbddd83e9c3373d-6980","user-response-type":"945495155552625","luis-call":"BillInfo","Response":{"facebook":{"text":
-				"**Here are the settings for your router** : 
-				**Wi-Fi Network Name (SSID):** 2sc26 ,
-				**Wi-Fi Password**: a1b2c3d4e5 ,
-				**Security Type:** WPA2 "}}}}},"Flow":{"DisplayName":"APIChatBot"},"Step":{"Description":"Step 2","TimerTime":"5"},"Possible_Paths":null},"CurrentStep":"981eedee-408e-4048-81b3-68d92ff422b1","TemplateID":"PANES","SubFlow":"TroubleShooting Flows\\ChatBot\\APIChatBot.xml","CallStack":"1bc8c58a-8cb8-417b-924f-be305ab7f659","Redirect":"False","TID":"e9c3373d-6980-4085-ba2a-35d253d37b34","Level":"0","ServerIP":"140.108.154.140"}];
+				var objToJson= [
+  {
+    "Inputs": {
+      "Caption": "APIChatBot",
+      "Description": "Step 2",
+      "newTemp": {
+        "Section": {
+          "Inputs": {
+            "Response": {
+              "facebook": {
+                "text": "**Here are the settings for your router** : **Wi-Fi Network Name (SSID):** 2sc26 ,**Wi-Fi Password**: a1b2c3d4e5 ,**Security Type:** WPA2 "
+              }
+            }
+          }
+        }
+      },
+      "Flow": {
+        "DisplayName": "APIChatBot"
+      }
+    }
+  }
+];
 				showwifidetails(objToJson, session)
 				break;
 										 
