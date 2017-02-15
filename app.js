@@ -115,7 +115,7 @@ bot.dialog('/', function (session) {
 	console.log("sender", (sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
 	var req = apiAiService.textRequest(session.message.text, options);
-	console.log("Entering 2");
+	console.log("Entering 2", + JSON.stringify(req));
 	req.on('response', function (response) {
 		console.log("Entering 3");
 		var straction = response.result.action;
