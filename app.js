@@ -170,7 +170,7 @@ bot.dialog('/', function (session) {
 				break;	
 				case "VMAccessNumber":
 				console.log("inside showVMAccessNumber case");
-				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"Your Voice Mail access number is\n\n**1.888.2FIOSVM (1.888.234.6786)**\n\nor you can dial ** *86 ** from your home phone."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"Your Voice Mail access number is : **1.888.2FIOSVM (1.888.234.6786)**\n\nor you can dial ** *86 ** from your home phone."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showVMAccessNumber(objToJson, session)
 				break;		
 		}
