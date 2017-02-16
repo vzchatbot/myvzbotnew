@@ -173,7 +173,8 @@ bot.dialog('/', function (session) {
 				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"Your Voice Mail access number is : **1.888.2FIOSVM (1.888.234.6786)** or you can dial ** *86 ** from your home phone."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showVMAccessNumber(objToJson, session)
 				break;		
-		}
+				
+				 }
                     
 	});
 	req.on('error', function (error) {
