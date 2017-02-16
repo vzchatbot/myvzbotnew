@@ -124,7 +124,7 @@ bot.dialog('/', function (session) {
 		switch (straction) {					 
 			case "showopentickets":
 			case "showOutagetickets":
-			var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area.\n\nThe ticket number is :**MQRC1777S6** \n\n . It's expected to be resolved by - **2/26/2017 2:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+			var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area.\n\nThe ticket number is : **MQRC1777S6** .\n\n  It's expected to be resolved by - **2/26/2017 2:30 .** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showOutageNoti(objToJson, session)
 				break;
 			case "channelsearch":
@@ -154,7 +154,7 @@ bot.dialog('/', function (session) {
 				break;
 				case "PushNotification":
 				console.log("inside Notification case");
-				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area.\n\nThe ticket number is :**VAQC001576** \n\n . It's expected to be resolved by - **2/12/2017 11:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area.\n\nThe ticket number is :**VAQC001576** .\n\n  It's expected to be resolved by - **2/12/2017 11:30 .** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showNotification(objToJson, session)
 				break;	
 				case "VMAccessNumber":
