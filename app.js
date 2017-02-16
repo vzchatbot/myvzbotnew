@@ -165,9 +165,14 @@ bot.dialog('/', function (session) {
 				break;
 				case "PushNotification":
 				console.log("inside Notification case");
-				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area\n\n. It's expected to be resolved by - **2/12/2017 11:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area.\n\nThe ticket number is :**VAQC001576** \n\n . It's expected to be resolved by - **2/12/2017 11:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showNotification(objToJson, session)
-				break;						 
+				break;	
+				case "VMAccessNumber":
+				console.log("inside showVMAccessNumber case");
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"Your Voice Mail access number is\n\n**1.888.2FIOSVM (1.888.234.6786)**\n\nor you can dial ** *86 ** from your home phone."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				showVMAccessNumber(objToJson, session)
+				break;		
 		}
                     
 	});
@@ -188,6 +193,12 @@ function showNotification(apiresp, usersession)
 {	
 	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
 	console.log("inside showNotification call back" + JSON.stringify(subflow));
+	usersession.send(subflow.facebook);
+}
+function showVMAccessNumber(apiresp, usersession) 
+{	
+	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
+	console.log("inside showVMAccessNumber call back" + JSON.stringify(subflow));
 	usersession.send(subflow.facebook);
 }
 
