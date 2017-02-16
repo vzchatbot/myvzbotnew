@@ -120,11 +120,6 @@ bot.dialog('/', function (session) {
 		console.log("Entering 3");
 		var straction = response.result.action;
 		console.log(JSON.stringify(response));
-		if(struserid == '' || struserid == undefined || struserid='null' )
-		{
-			struserid = 'default';
-			console.log("struserid=" + JSON.stringify(struserid));
-		}
 		
 		switch (straction) {					 
 			case "showopentickets":
