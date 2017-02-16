@@ -167,6 +167,11 @@ bot.dialog('/', function (session) {
 				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I haven't learned that about you yet"}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showdefault(objToJson, session)
 				break;	
+				case "getStarted":
+				console.log("inside default case");
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"Are you looking for something to watch ,or do you want to see more options ? **Type below**"}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				showgetStarted(objToJson, session)
+				break;	
 				 }
                     
 	});
@@ -206,6 +211,12 @@ function showdefault(apiresp, usersession)
 {	
 	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
 	console.log("inside showdefault call back" + JSON.stringify(subflow));
+	usersession.send(subflow.facebook);
+}
+function showgetStarted(apiresp, usersession) 
+{	
+	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
+	console.log("inside getStarted call back" + JSON.stringify(subflow));
 	usersession.send(subflow.facebook);
 }
 function stationsearch(apireq, userCoversationArr, callback) {
