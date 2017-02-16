@@ -124,19 +124,8 @@ bot.dialog('/', function (session) {
 		switch (straction) {					 
 			case "showopentickets":
 			case "showOutagetickets":
-				var struserid = '';
-				struserid = 'lt6sth4'; //hardcoding if its empty	
-				console.log('struserid ' + struserid);
-				var headersInfo = { "Content-Type": "application/json" };
-				var args = { "headers": headersInfo, "json": { Flow: 'TroubleShooting Flows\\ChatBot\\APIChatBot.xml', Request: { ThisValue: 'showOutage', BotProviderId: '1422076921145354' } } };
-				
-				console.log("args=" + JSON.stringify(args));
-				request.post('https://www.verizon.com/foryourhome/vzrepair/flowengine/restapi.ashx', args,
-    		function (error, response, body) {
-					if (!error && response.statusCode == 200) {
-						showOutageticketsCallback(body, session)
-					}
-				});
+			var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I see there's an a network Outage in your area.\n\nThe ticket number is :**MQRC1777S6** \n\n . It's expected to be resolved by - **2/26/2017 2:30** \n\n Sorry for the inconvenience."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				showOutageNoti(objToJson, session)
 				break;
 			case "channelsearch":
 				logger.debug("----->>>>>>>>>>>> INSIDE channelsearch <<<<<<<<<<<------");
@@ -200,6 +189,13 @@ function showVMAccessNumber(apiresp, usersession)
 {	
 	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
 	console.log("inside showVMAccessNumber call back" + JSON.stringify(subflow));
+	usersession.send(subflow.facebook);
+}
+
+function showOutageNoti(apiresp, usersession) 
+{	
+	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
+	console.log("inside showOutageNoti call back" + JSON.stringify(subflow));
 	usersession.send(subflow.facebook);
 }
 
