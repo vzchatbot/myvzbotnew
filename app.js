@@ -120,6 +120,11 @@ bot.dialog('/', function (session) {
 		console.log("Entering 3");
 		var straction = response.result.action;
 		console.log(JSON.stringify(response));
+		if(struserid == '' || struserid == undefined || struserid='null' )
+		{
+			struserid = 'default';
+			console.log("struserid=" + JSON.stringify(struserid));
+		}
 		
 		switch (straction) {					 
 			case "showopentickets":
@@ -162,7 +167,11 @@ bot.dialog('/', function (session) {
 				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"Your Voice Mail access number is : **1.888.2FIOSVM (1.888.234.6786)** or you can dial ** *86 ** from your home phone."}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
 				showVMAccessNumber(objToJson, session)
 				break;		
-				
+				case "default":
+				console.log("inside default case");
+				var objToJson= [{"Inputs":{"Caption":"APIChatBot","Description":"Step2","newTemp":{"Section":{"Inputs":{"Response":{"facebook":{"text":"I haven't learned that about you yet"}}}}},"Flow":{"DisplayName":"APIChatBot"}}}];
+				showdefault(objToJson, session)
+				break;	
 				 }
                     
 	});
@@ -198,7 +207,12 @@ function showOutageNoti(apiresp, usersession)
 	console.log("inside showOutageNoti call back" + JSON.stringify(subflow));
 	usersession.send(subflow.facebook);
 }
-
+function showdefault(apiresp, usersession) 
+{	
+	var subflow = apiresp[0].Inputs.newTemp.Section.Inputs.Response;
+	console.log("inside showdefault call back" + JSON.stringify(subflow));
+	usersession.send(subflow.facebook);
+}
 function stationsearch(apireq, userCoversationArr, callback) {
 	
 	logger.debug('Inside stationsearch started');
