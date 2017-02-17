@@ -112,7 +112,7 @@ bot.dialog('/', function (session) {
 	console.log("Entering 1st");
 	console.log("api.ai" + APIAI_ACCESS_TOKEN);
 	var userCoversationArr = '';
-	console.log("Session*****" + J.stringify(session));
+	console.log("Session*****" + JSONbig.stringify(session));
 	//  console.log(" Session****** ", (session));
 	console.log("sender", (sender));
 	var options = { sessionId: '123456789abcdefghsuresh' }
