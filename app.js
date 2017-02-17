@@ -10,6 +10,7 @@ var async = require('async');
 var log4js = require('log4js');
 var fs = require('fs');
 var util = require('util');
+var http = require('http');
 
 var config = require('./config/devconfig.json');
 
